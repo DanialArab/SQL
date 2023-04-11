@@ -17,10 +17,9 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         print("Connection to the database was successful!")
     except pymysql.Error as e:
         print(f"An error occurred while connecting to the database: {e}")
-        
-    Connection to the database was successful!
     
     # Calling this function makes life easy and just need to pass the name of the database I want to make a query on. It serves like USE keyword in SQL.
+    
     def connector (database, password=password, host='localhost', user='root', charset='utf8mb4',):
     
         conn = pymysql.connect(
@@ -33,6 +32,7 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         return conn
         
     #  Creating a database in the MySQL server based on the SQL Schema of the Leetcode question 
+    
     def database_creator(database_name):
 
         conn = connector(database=None)
@@ -50,6 +50,7 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         conn.close()  
     
     # Populating the created database using the data
+    
     def insert_data_to_table(database_name, table_name, schema, data):
         # Connect to the database
         conn = connector(database_name)
@@ -76,5 +77,5 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         conn.close()
 
 Note on the jupyter notebook files attached to this repo:
-+ 
+    + 1
 my course note (Complete SQL Mastery -- instructor: Mosh Hamedani)
