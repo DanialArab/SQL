@@ -6,7 +6,8 @@ Also included in this repo is my notes from a course Complete SQL Mastery by Mos
 
 Note on the jupyter notebook files attached to this repo:
 
-++ 1
+    1. 
+    2. 
 
 
 
