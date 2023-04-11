@@ -21,7 +21,6 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
     Connection to the database was successful!
     
     # Calling this function makes life easy and just need to pass the name of the database I want to make a query on. It serves like USE keyword in SQL.
-
     def connector (database, password=password, host='localhost', user='root', charset='utf8mb4',):
     
         conn = pymysql.connect(
@@ -51,7 +50,6 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         conn.close()  
     
     # Populating the created database using the data
-    
     def insert_data_to_table(database_name, table_name, schema, data):
         # Connect to the database
         conn = connector(database_name)
