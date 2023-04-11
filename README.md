@@ -7,8 +7,6 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
     import pandas as pd
     password = os.environ.get('MYSQL_PASSWORD')
     
-    password = os.environ.get('MYSQL_PASSWORD')
-
     try:
         con = pymysql.connect(
         host='localhost',
@@ -22,12 +20,10 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         
     Connection to the database was successful!
     
-    # calling this function makes life easy and just need to pass the name of the database I want to make a query on
-    # It serves like USE keyword in SQL
+    # calling this function makes life easy and just need to pass the name of the database I want to make a query on. It serves like USE keyword in SQL.
 
-    def connector (database, password=password, host='localhost', 
-                   user='root', charset='utf8mb4',):
-
+    def connector (database, password=password, host='localhost', user='root', charset='utf8mb4',):
+    
         conn = pymysql.connect(
                             host=host,
                             user=user,
@@ -36,5 +32,47 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
                             database=database)
 
         return conn
+        
+        
+        def database_creator(database_name):
+
+            conn = connector(database=None)
+
+            # Create a cursor object
+            cursor = conn.cursor()
+
+            # Execute the CREATE DATABASE SQL command
+            cursor.execute(f"CREATE DATABASE {database_name}")
+
+            # Commit the transaction
+            conn.commit()
+
+            # Close the connection
+            conn.close()  
+        
+        def insert_data_to_table(database_name, table_name, schema, data):
+            # Connect to the database
+            conn = connector(database_name)
+
+            # Create a cursor object
+            cursor = conn.cursor()
+
+            # Create the table with the given schema if it does not exist
+            cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ({schema})")
+
+            # Truncate the table to remove any existing data
+            cursor.execute(f"TRUNCATE TABLE {table_name}")
+
+            # Insert data into the table
+            for row in data:
+                placeholders = ",".join(["%s" for _ in range(len(row))])
+                query = f"INSERT INTO {table_name} VALUES ({placeholders})"
+                cursor.execute(query, row)
+
+            # Commit the transaction to save the changes
+            conn.commit()
+
+            # Close the connection
+            conn.close()
 
 my course note (Complete SQL Mastery -- instructor: Mosh Hamedani)
