@@ -10,7 +10,7 @@ Note on the jupyter notebook files attached to this repo:
 - SQL_Theoretical_Points.ipynb contains all of the notes I took from the course videos. 
 - Leetcode_Database_Questions.ipynb contains my solutions to the Leetcode - database questions using SQL.
 
-The following functions need to be executed to generate the databases in the MySQL server:
+The following functions need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions:
 
     import os
     import pymysql
