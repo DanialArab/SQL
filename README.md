@@ -9,11 +9,11 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
     
     try:
         con = pymysql.connect(
-        host='localhost',
-        user='root',
-        password=password,
-        charset='utf8mb4'
-        )
+                                host='localhost',
+                                user='root',
+                                password=password,
+                                charset='utf8mb4'
+                                )
         print("Connection to the database was successful!")
     except pymysql.Error as e:
         print(f"An error occurred while connecting to the database: {e}")
@@ -34,45 +34,45 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         return conn
         
         
-        def database_creator(database_name):
+    def database_creator(database_name):
 
-            conn = connector(database=None)
+        conn = connector(database=None)
 
-            # Create a cursor object
-            cursor = conn.cursor()
+        # Create a cursor object
+        cursor = conn.cursor()
 
-            # Execute the CREATE DATABASE SQL command
-            cursor.execute(f"CREATE DATABASE {database_name}")
+        # Execute the CREATE DATABASE SQL command
+        cursor.execute(f"CREATE DATABASE {database_name}")
 
-            # Commit the transaction
-            conn.commit()
+        # Commit the transaction
+        conn.commit()
 
-            # Close the connection
-            conn.close()  
-        
-        def insert_data_to_table(database_name, table_name, schema, data):
-            # Connect to the database
-            conn = connector(database_name)
+        # Close the connection
+        conn.close()  
 
-            # Create a cursor object
-            cursor = conn.cursor()
+    def insert_data_to_table(database_name, table_name, schema, data):
+        # Connect to the database
+        conn = connector(database_name)
 
-            # Create the table with the given schema if it does not exist
-            cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ({schema})")
+        # Create a cursor object
+        cursor = conn.cursor()
 
-            # Truncate the table to remove any existing data
-            cursor.execute(f"TRUNCATE TABLE {table_name}")
+        # Create the table with the given schema if it does not exist
+        cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ({schema})")
 
-            # Insert data into the table
-            for row in data:
-                placeholders = ",".join(["%s" for _ in range(len(row))])
-                query = f"INSERT INTO {table_name} VALUES ({placeholders})"
-                cursor.execute(query, row)
+        # Truncate the table to remove any existing data
+        cursor.execute(f"TRUNCATE TABLE {table_name}")
 
-            # Commit the transaction to save the changes
-            conn.commit()
+        # Insert data into the table
+        for row in data:
+            placeholders = ",".join(["%s" for _ in range(len(row))])
+            query = f"INSERT INTO {table_name} VALUES ({placeholders})"
+            cursor.execute(query, row)
 
-            # Close the connection
-            conn.close()
+        # Commit the transaction to save the changes
+        conn.commit()
+
+        # Close the connection
+        conn.close()
 
 my course note (Complete SQL Mastery -- instructor: Mosh Hamedani)
