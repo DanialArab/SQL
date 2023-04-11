@@ -1,4 +1,4 @@
-# SQL
+# Structured Query Lanquage 
 
 This repo documents my solutions to Leetcode - Database questions using SQL. The Leetcode database was first needed to be regenerated in my MySQL server using the SQL Schema presented in the Leetcode questions. This is required to be able to make a query in the jupyter notebook using my MySQL credentials. The following functions need to be executed to generate the databases in the MySQL server:
 
@@ -20,7 +20,7 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         
     Connection to the database was successful!
     
-    # calling this function makes life easy and just need to pass the name of the database I want to make a query on. It serves like USE keyword in SQL.
+    # Calling this function makes life easy and just need to pass the name of the database I want to make a query on. It serves like USE keyword in SQL.
 
     def connector (database, password=password, host='localhost', user='root', charset='utf8mb4',):
     
@@ -33,7 +33,7 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
 
         return conn
         
-        
+    #  Creating a database in the MySQL server based on the SQL Schema of the Leetcode question 
     def database_creator(database_name):
 
         conn = connector(database=None)
@@ -49,7 +49,9 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
 
         # Close the connection
         conn.close()  
-
+    
+    # Populating the created database using the data
+    
     def insert_data_to_table(database_name, table_name, schema, data):
         # Connect to the database
         conn = connector(database_name)
@@ -75,4 +77,6 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         # Close the connection
         conn.close()
 
+Note on the jupyter notebook files attached to this repo:
++ 
 my course note (Complete SQL Mastery -- instructor: Mosh Hamedani)
