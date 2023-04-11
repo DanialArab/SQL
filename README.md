@@ -1,6 +1,17 @@
 # Structured Query Language 
 
-This repo documents my solutions to Leetcode - Database questions using SQL. The Leetcode database was first needed to be regenerated in my MySQL server using the SQL Schema presented in the Leetcode questions. This is required to be able to make a query in the jupyter notebook using my MySQL credentials. The following functions need to be executed to generate the databases in the MySQL server:
+This repo documents my solutions to Leetcode - Database questions using SQL. The Leetcode database was first needed to be regenerated in my MySQL server using the SQL Schema presented in the Leetcode questions. This is required to be able to make a query in the jupyter notebook using my MySQL credentials. 
+
+Also included in this repo is my notes from a course Complete SQL Mastery by Mosh Hamedani. 
+
+Note on the jupyter notebook files attached to this repo:
+
+++ 1
+
+
+
+
+The following functions need to be executed to generate the databases in the MySQL server:
 
     import os
     import pymysql
@@ -76,6 +87,3 @@ This repo documents my solutions to Leetcode - Database questions using SQL. The
         # Close the connection
         conn.close()
 
-Note on the jupyter notebook files attached to this repo:
-    + 1
-my course note (Complete SQL Mastery -- instructor: Mosh Hamedani)
