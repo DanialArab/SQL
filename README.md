@@ -7,10 +7,8 @@ Also included in this repo is my notes from a course Complete SQL Mastery by Mos
 Note on the jupyter notebook files attached to this repo:
 
 - SQL_Coding.ipynb file contains my solution to all of the class exercises.
-- SQL_Theoretical_Points.ipynb contains all of the notes I took from the videos. 
-- Leetcode_Database_Questions.ipynb contains my solution to the Leetcode - database questions using SQL.
-
-
+- SQL_Theoretical_Points.ipynb contains all of the notes I took from the course videos. 
+- Leetcode_Database_Questions.ipynb contains my solutions to the Leetcode - database questions using SQL.
 
 The following functions need to be executed to generate the databases in the MySQL server:
 
