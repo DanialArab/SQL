@@ -86,3 +86,33 @@ The following functions need to be executed to generate the databases in the MyS
         # Close the connection
         conn.close()
 
+# This is a modified version of the insert_data_to_table to take care of when we have one item in each tuple like data = [('Math'), ('Physics'), ('Programming')] in Q 1280
+
+        def insert_data_to_table_modified(database_name, table_name, schema, data):
+            # Connect to the database
+            conn = connector(database_name)
+
+            # Create a cursor object
+            cursor = conn.cursor()
+
+            # Create the table with the given schema if it does not exist
+            cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ({schema})")
+
+            # Truncate the table to remove any existing data
+            cursor.execute(f"TRUNCATE TABLE {table_name}")
+
+             # Insert data into the table
+            for row in data:
+                if type (row) == tuple:
+                    placeholders = ",".join(["%s" for _ in range(len(row))])
+                    query = f"INSERT INTO {table_name} VALUES ({placeholders})"
+                    cursor.execute(query, row)
+                else:
+                    query = f"INSERT INTO {table_name} VALUES (%s)"
+                    cursor.execute(query, row)
+
+            # Commit the transaction to save the changes
+            conn.commit()
+
+            # Close the connection
+            conn.close()
