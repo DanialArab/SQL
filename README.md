@@ -12,7 +12,9 @@ Note on the jupyter notebook files attached to this repo:
 
 The following functions need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
 
-1. Connecting to the MySQL database 
+
+## 1. Connecting to the MySQL database 
+
 
     import os
     import pymysql
