@@ -86,7 +86,7 @@ The following functions need to be executed to generate the databases in the MyS
         # Close the connection
         conn.close()
 
-# This is a modified version of the insert_data_to_table to take care of when we have one item in each tuple like data = [('Math'), ('Physics'), ('Programming')] in Q 1280
+        # This is a modified version of the insert_data_to_table to take care of when we have one item in each tuple like data = [('Math'), ('Physics'), ('Programming')] in Q 1280
 
         def insert_data_to_table_modified(database_name, table_name, schema, data):
             # Connect to the database
