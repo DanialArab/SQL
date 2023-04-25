@@ -10,10 +10,10 @@ Note on the jupyter notebook files attached to this repo:
 - SQL_Theoretical_Points.ipynb contains all of the notes I took from the course videos. 
 - Leetcode_Database_Questions.ipynb contains my solutions to the Leetcode - database questions using SQL.
 
-The following functions need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
+The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
 
 
-## 1. Connecting to the MySQL database 
+## 1. Connecting to the MySQL server  
 
 
     import os
@@ -32,7 +32,9 @@ The following functions need to be executed to generate the databases in the MyS
     except pymysql.Error as e:
         print(f"An error occurred while connecting to the database: {e}")
     
-    # Calling this function makes life easy and just need to pass the name of the database I want to make a query on. It serves like USE keyword in SQL.
+## 2. Connecting to a database 
+
+The following function provides a handy connection to the desired database, and the user just needs to pass the name of the database he/she wants to make a query on. It serves like USE keyword in SQL.
     
     def connector (database, password=password, host='localhost', user='root', charset='utf8mb4',):
     
