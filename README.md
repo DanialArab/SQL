@@ -146,7 +146,24 @@ In terms of Leetcode database questions, the database first need to be regenerat
         
 ## 5. Getting the name of databases in the MySQL server
 
+    def database_names():
 
+        # Create a cursor object
+        cursor = con.cursor()
+
+        # Execute the SHOW DATABASES command
+        cursor.execute('SHOW DATABASES')
+
+        # Fetch all the results as a list of tuples
+        results = cursor.fetchall()
+
+        # Print the names of all databases in the MySQL server
+        for row in results:
+            print(row[0])
+
+        # Close the cursor and connection
+        cursor.close()
+        con.close()
 
 ## 6. Getting the name of the tables in the database
 
@@ -162,4 +179,3 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Print the list of tables
         return tables
 
-## 6. 
