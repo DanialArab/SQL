@@ -10,7 +10,11 @@ Note on the jupyter notebook files attached to this repo:
 - SQL_Theoretical_Points.ipynb contains all of the notes I took from the course videos. 
 - Leetcode_Database_Questions.ipynb contains my solutions to the Leetcode - database questions using SQL.
 
-The following functions need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
+The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
+
+
+## 1. Connecting to the MySQL server  
+
 
     import os
     import pymysql
@@ -28,7 +32,9 @@ The following functions need to be executed to generate the databases in the MyS
     except pymysql.Error as e:
         print(f"An error occurred while connecting to the database: {e}")
     
-    # Calling this function makes life easy and just need to pass the name of the database I want to make a query on. It serves like USE keyword in SQL.
+## 2. Connecting to a database 
+
+The following function provides a handy connection to the desired database, and the user just needs to pass the name of the database he/she wants to make a query on. It serves like USE keyword in SQL.
     
     def connector (database, password=password, host='localhost', user='root', charset='utf8mb4',):
     
@@ -40,8 +46,10 @@ The following functions need to be executed to generate the databases in the MyS
                             database=database)
 
         return conn
-        
-    #  Creating a database in the MySQL server based on the SQL Schema of the Leetcode question 
+  
+## 3. Creating a database in the MySQL server based on the SQL Schema of the Leetcode question
+
+In terms of Leetcode database questions, the database first need to be regenerated. The function **database_creator** is executed to create a database and then the function **insert_data_to_table** is executed to populate the created database with the data provided by the SQL Schema, found in the Leetcode.com for each SQL questions:
     
     def database_creator(database_name):
 
@@ -86,3 +94,34 @@ The following functions need to be executed to generate the databases in the MyS
         # Close the connection
         conn.close()
 
+    # This is a modified version of the insert_data_to_table to take care of when we have one item 
+    in each tuple like data = [('Math'), ('Physics'), ('Programming')] in Q 1280
+
+    def insert_data_to_table_modified(database_name, table_name, schema, data):
+        # Connect to the database
+        conn = connector(database_name)
+
+        # Create a cursor object
+        cursor = conn.cursor()
+
+        # Create the table with the given schema if it does not exist
+        cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ({schema})")
+
+        # Truncate the table to remove any existing data
+        cursor.execute(f"TRUNCATE TABLE {table_name}")
+
+         # Insert data into the table
+        for row in data:
+            if type (row) == tuple:
+                placeholders = ",".join(["%s" for _ in range(len(row))])
+                query = f"INSERT INTO {table_name} VALUES ({placeholders})"
+                cursor.execute(query, row)
+            else:
+                query = f"INSERT INTO {table_name} VALUES (%s)"
+                cursor.execute(query, row)
+
+        # Commit the transaction to save the changes
+        conn.commit()
+
+        # Close the connection
+        conn.close()
