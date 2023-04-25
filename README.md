@@ -47,7 +47,7 @@ The following function provides a handy connection to the desired database, and 
 
         return conn
   
-## 3. Creating a database in the MySQL server based on the SQL Schema of the Leetcode question
+## 3. Creating a database in the MySQL server and populating it with the data based on the SQL Schema of the Leetcode question
 
 In terms of Leetcode database questions, the database first need to be regenerated. The function **database_creator** is executed to create a database and then the function **insert_data_to_table** is executed to populate the created database with the data provided by the SQL Schema, found in the Leetcode.com for each SQL questions:
     
@@ -126,25 +126,7 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Close the connection
         conn.close()
 
-## 4. Deleting a database
-
-    def delete_database(database):
-        conn = connector(database=None)
-        cursor = conn.cursor()
-
-        # Replace <database_name> with the name of the database you want to delete
-        database_name = database
-
-        # Execute the DROP DATABASE SQL command
-        cursor.execute(f"DROP DATABASE {database_name}")
-
-        # Commit the transaction
-        conn.commit()
-
-        # Close the connection
-        conn.close()
-        
-## 5. Getting the name of databases in the MySQL server
+## 4. Getting the name of databases in the MySQL server
 
     def database_names():
 
@@ -165,7 +147,7 @@ In terms of Leetcode database questions, the database first need to be regenerat
         cursor.close()
         con.close()
 
-## 6. Getting the name of the tables in the database
+## 5. Getting the name of the tables in the database
 
     def table_names (database):
 
@@ -179,3 +161,21 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Print the list of tables
         return tables
 
+## 6. Deleting a database
+
+    def delete_database(database):
+        conn = connector(database=None)
+        cursor = conn.cursor()
+
+        # Replace <database_name> with the name of the database you want to delete
+        database_name = database
+
+        # Execute the DROP DATABASE SQL command
+        cursor.execute(f"DROP DATABASE {database_name}")
+
+        # Commit the transaction
+        conn.commit()
+
+        # Close the connection
+        conn.close()
+        
