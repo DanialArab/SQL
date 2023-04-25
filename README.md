@@ -46,8 +46,10 @@ The following function provides a handy connection to the desired database, and 
                             database=database)
 
         return conn
-        
-    #  Creating a database in the MySQL server based on the SQL Schema of the Leetcode question 
+  
+## 3. Creating a database in the MySQL server based on the SQL Schema of the Leetcode question
+
+In terms of Leetcode database questions, the database first need to be regenerated. The function **database_creator** is executed to create a database and then the function **insert_data_to_table** is executed to populate the created database with the data provided by the SQL Schema, found in the Leetcode.com for each SQL questions:
     
     def database_creator(database_name):
 
