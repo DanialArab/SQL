@@ -95,7 +95,7 @@ In terms of Leetcode database questions, the database first need to be regenerat
         conn.close()
 
     # This is a modified version of the insert_data_to_table to take care of when we have one item 
-    in each tuple like data = [('Math'), ('Physics'), ('Programming')] in Q 1280
+    in each tuple like data = [('Math'), ('Physics'), ('Programming')] like in Q 1280
 
     def insert_data_to_table_modified(database_name, table_name, schema, data):
         # Connect to the database
@@ -125,3 +125,41 @@ In terms of Leetcode database questions, the database first need to be regenerat
 
         # Close the connection
         conn.close()
+
+## 4. Deleting a database
+
+    def delete_database(database):
+        conn = connector(database=None)
+        cursor = conn.cursor()
+
+        # Replace <database_name> with the name of the database you want to delete
+        database_name = database
+
+        # Execute the DROP DATABASE SQL command
+        cursor.execute(f"DROP DATABASE {database_name}")
+
+        # Commit the transaction
+        conn.commit()
+
+        # Close the connection
+        conn.close()
+        
+## 5. Getting the name of databases in the MySQL server
+
+
+
+## 6. Getting the name of the tables in the database
+
+    def table_names (database):
+
+        con = connector(database)
+
+        query = "SELECT table_name FROM information_schema.tables WHERE table_schema='{}';".format(database)
+
+        # Execute the query and store the results in a Pandas DataFrame
+        tables = pd.read_sql_query(query, con)
+
+        # Print the list of tables
+        return tables
+
+## 6. 
