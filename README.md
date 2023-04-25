@@ -94,8 +94,8 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Close the connection
         conn.close()
 
-        # This is a modified version of the insert_data_to_table to take care of when we have one item 
-        in each tuple like data = [('Math'), ('Physics'), ('Programming')] in Q 1280
+    # This is a modified version of the insert_data_to_table to take care of when we have one item 
+    in each tuple like data = [('Math'), ('Physics'), ('Programming')] in Q 1280
 
     def insert_data_to_table_modified(database_name, table_name, schema, data):
         # Connect to the database
