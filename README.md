@@ -17,21 +17,55 @@ This repo documents my solutions to **Leetcode - Database questions using SQL**.
 | -- | --|  -- | -- |
 |1 | 1757| Recyclable and Low Fat Products | Easy |
 |2 |1378| Replace Employee ID With The Unique Identifier| Easy | 
-| | | Easy | 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
-| | | Easy 
+|3 |1683| Invalid Tweets | Easy | 
+| 4|1741| Find Total Time Spent by Each Employee | Easy |
+|5 | 2356| Number of Unique Subjects Taught by Each Teacher| Easy |
+| 6| 1693| Daily Leads and Partners| Easy |
+|7 | 1795| Rearrange Products Table| Easy |
+| 8| 1587| Bank Account Summary II| Easy |
+|9 |1581| Customer Who Visited but Did Not Make Any Transactions | Easy |
+| 10| 627| Swap Salary| Easy |
+|11 |1251| Average Selling Price | Easy |
+|12 | 1068| Product Sales Analysis I| Easy |
+|13 | 1179| Reformat Department Table| Easy |
+|14 | 1484| Group Sold Products By The Date| Easy |
+|15 | 1890| The Latest Login in 2020| Easy |
+|16 | 1789| Primary Department for Each Employee| Easy |
+|17 |1661| Average Time of Process per Machine | Easy |
+|18 |1148| Article Views I | Easy |
+|19 | 511| Game Play Analysis I| Easy |
+|20 | 1327| List the Products Ordered in a Period| Easy |
+|21 | 577| Employee Bonus| Easy |
+|22 |1965| Employees With Missing Information | Easy |
+|23 | 620| Not Boring Movies| Easy |
+|24 |1729| Find Followers Count | Easy |
+|25 |182| Duplicate Emails | Easy |
+|26 | 610| Triangle Judgement| Easy |
+|27 | 1211| Queries Quality and Percentage| Easy |
+|28 | 1050| Actors and Directors Who Cooperated At Least Three Times| Easy |
+|29 | 1280| Students and Examinations| Easy |
+|30 | 595| Big Countries| Easy |
+|31 | 584| Find Customer Referee| Easy |
+|32 | 181| Employees Earning More Than Their Managers| Easy |
+|33 |607| Sales Person | Easy |
+|34 |183|Customers Who Never Order | Easy |
+|35 | 586| Customer Placing the Largest Number of Orders| Easy |
+|36 | 1075| Project Employees I| Easy |
+|37 | 1633| Percentage of Users Attended a Contest| Easy |
+|38 | 1667| Fix Names in a Table| Easy |
+|39 | 1407| Top Travellers| Easy |
+|40 | 196| Delete Duplicate Emails| Easy |
+|41 | 1873| Calculate Special Bonus| Easy |
+|42 | 1517| Find Users With Valid E-Mails| Easy |
+|43 |619| Biggest Single Number | Easy |
+|44 |1978| Employees Whose Manager Left the Company | Easy |
+|45 | 1731| The Number of Employees Which Report to Each Employee| Easy |
+|46 | 1084| Sales Analysis III| Easy |
+|47 | 1141| User Activity for the Past 30 Days I| Easy |
+|48 | 596| Classes More Than 5 Students| Easy |
+|49 |197| Rising Temperature | Easy |
+|50 |1527| Patients With a Condition | Easy |
+
 
 
 
