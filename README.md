@@ -246,4 +246,4 @@ In terms of Leetcode database questions, the database first need to be regenerat
 <a name="4"></a>
 ## Complete SQL Mastery
 
-Also included in this repo are <a href="https://github.com/DanialArab/SQL/tree/master/Complete%20SQL%20Mastery">my notes/a> from the course Complete SQL Mastery. My solutions to all of the class exercises are also detailed in the Jupyter Notebook <a href="linmk)
+Also included in this repo are <a href="https://github.com/DanialArab/SQL/tree/master/Complete%20SQL%20Mastery">my notes</a> from the course Complete SQL Mastery. My solutions to all of the class exercises are also detailed in the Jupyter Notebook <a href="linmk)
