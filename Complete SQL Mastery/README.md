@@ -58,6 +58,16 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     7. [Subqueries in the SELECT clause](#54)
     8. [Subqueries in the FROM clause](#55)
 7. [Essential MySQL Functions](#56)
+    1. [NUMERIC Function](#57)
+    2. [STRING Functions](#58)
+    3. [DATE Functions](#59)
+    4. [FORMATTING Date and Times](#60)
+    5. [CALCULATING Dates and Times](#61)
+    6. [IFNULL and COALESCE Functions](#62)
+    7. [IF Function](#63)
+    8. [CASE Operator](#64)
+8. [VIEWS](#65)
+    1. [](#66)
 
    
 <a name="1"></a>
@@ -1684,7 +1694,36 @@ Takeaway: You can write a subquery in the FROM clause of the SELECT statement, b
 <a name="56"></a>
 ### Essential MySQL Functions 
 
+HERE
+
+<a name="57"></a>
+#### NUMERIC Function
+
+<a name="58"></a>
+#### STRING Functions
+
+
+<a name="59"></a>
+#### DATE Functions
+
+<a name="60"></a>
+#### FORMATTING Date and Times
+
+<a name="61"></a>
+#### CALCULATING Dates and Times
+
+<a name="62"></a>
+#### IFNULL and COALESCE Functions
+
+<a name="63"></a>
+#### IF Function
+
+<a name="64"></a>
+#### CASE Operator
+
+
+<a name="65"></a>
+### VIEWS
+
 <a name="57"></a>
 #### 
-
-
