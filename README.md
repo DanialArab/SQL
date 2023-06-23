@@ -1,7 +1,5 @@
 # Structured Query Language 
 
-## Leetcode Problem Categories
-
 1. [Leetcode - Database Questions](#1)
     1. [Details of the ](#2)
     2. [Workflow to generate the Leetcode databases in the MySQL server](#3)
