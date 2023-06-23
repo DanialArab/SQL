@@ -1,9 +1,9 @@
 # Structured Query Language 
 
-This repo documents my solutions to **Leetcode - Database questions using SQL**. The Leetcode database was first needed to be regenerated in my MySQL server using the SQL Schema, presented along with each Leetcode question. This is required to be able to make a query in the Jupyter Notebook. All of my solutions are presented in Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode_Database_Questions.ipynb">Leetcode_Database_Questions</a>**. The structure of this repo is as follows: 
+This repo documents my solutions to **Leetcode - Database questions using SQL**. The Leetcode database was first needed to be regenerated in my MySQL server using the SQL Schema, presented along with each Leetcode question. This is required to be able to make a query in the Jupyter Notebook. All of my solutions are presented in Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode_Database_Questions.ipynb">Leetcode_Database_Questions</a>**. The repo contains the following directories: 
 
 
-1. [Leetcode - Database Questions](#1)
+1. [Leetcode Database Questions](#1)
 2. [Complete SQL Mastery](#2)
 
 
