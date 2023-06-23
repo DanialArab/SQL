@@ -352,40 +352,399 @@ POINT: Again the order matters! The LIMIT clause should always come at the end.
 <a name="17"></a>
 #### Inner Joins
 
+So far we only selected columns from a single table but in the real world we quite often select columns from multiple tables. Like:
 
+        SELECT *
+        FROM orders
+        JOIN customers 
+            ON orders.customer_id = customers.customer_id 
+
+this JOIN is the same as INNER JOIN where INNER is optional, we also have OUTER JOIN, which will be discussed later
+
+With this query we tell MySQL that hey whenever you are joining the orders table with customers table make sure that the customer_id column in the orders table equals customer_id column in the customers table.
+
+The output would be all the columns from the two tables, first all the columns from orders table, b/c we have listed this table first, and then all the columns from the customers table. Let’s simplify the results:
+
+        SELECT order_id, first_name, last_name
+        FROM orders
+        JOIN customers 
+            ON orders.customer_id = customers.customer_id 
+
+What if we want to display the customer_id as well?
+
+        SELECT order_id, customer_id, first_name, last_name
+        FROM orders
+        JOIN customers 
+            ON orders.customer_id = customers.customer_id 
+
+This query throws an error b/c I have the column customer_id in two tables! The error says that customer_id column in the field list is ambiguous! So I need to specify from which table like:
+
+        SELECT order_id, orders.customer_id, first_name, last_name
+        FROM orders
+        JOIN customers 
+            ON orders.customer_id = customers.customer_id         
+
+Now it works!
+
+Points:
+
+In situations where we have same column in multiple tables we need to prefix the name of the column with the name of the table like above
+
+ON phrase specifies the basis based on which we want to join the tables, after ON we need to specify the condition
+
+We can use an alias to make our code cleaner, NOTE: if you give an alias to a table you have to use that alias everywhere else otherwise you get an error.
+
+          SELECT order_id, o.customer_id, first_name, last_name
+          FROM orders o
+          JOIN customers c 
+              ON o.customer_id = c.customer_id
 
 <a name="18"></a>
 #### Joining across databases
 
+How to combine columns from tables across multiple databases?
+
+What we did so far was to combine columns from multiple tables within a database, sql_store, but now we want to combine columns from tables across multiple databases. We need to prefix the table in JOIN with its database name:
+
+        USE sql_store;
+        SELECT *
+        FROM order_items oi
+        JOIN sql_inventory.products p 
+            ON oi.product_id = p.product_id 
+
+So we successfully joined tables across multiple databases.
+
+We need this prefix, sql_inventory.products, b/c the database we write this query against is the sql_store database. Also
+
+        USE sql_inventory;
+        SELECT *
+        FROM sql_store.order_items oi 
+        JOIN products p 
+            ON oi.product_id = p.product_id 
+    
+LESSON ----> I only have to prefix the tables that are NOT part of the current database. And so my query would be different depending on the current database.
+
 <a name="19"></a>
 #### Self Joins
+
+In SQL we can also join a table with itself. Let’s write a query to get each employee and their manager
+
+        USE sql_hr;
+        SELECT 
+            e.employee_id, 
+            e.first_name, 
+            m.first_name AS Manager
+        FROM employees e
+        JOIN employees m 
+            ON e.reports_to = m.employee_id
+    
+Joining a table with itself is pretty similar to joining a table with another table the only difference is that we have to use different aliases and we have to prefix each column with an alias, this is called self-join.
 
 <a name="20"></a>
 #### Joining Multiple Tables
 
+How to join more than TWO tables when writing a query?
+
+We want to write a query to join the orders table with two tables: the customers table and the order_statuses table.
+
+        USE sql_store;
+        SELECT 
+            o.order_id, 
+            o.order_date, 
+            c.first_name, 
+            c.last_name, 
+            os.name AS status 
+        FROM orders o
+        JOIN customers c
+            ON o.customer_id = c.customer_id 
+        JOIN order_statuses os 
+            ON o.status = os.order_status_id 
+    
+Exercise: write a query to join the payment table with the payment methods table as well as the client table and produce a report that shows the payment with more details such as the client’s name and the payment method:
+
+        USE sql_invoicing;
+        SELECT 
+            p.date,
+            p.invoice_id,
+            p.amount,
+            c.name,
+            pm.name AS payment 
+        FROM payments p
+        JOIN clients c 
+            ON p.client_id = c.client_id 
+        JOIN payment_methods pm
+            ON p.payment_method = pm.payment_method_id 
+
 <a name="21"></a>
 #### Compound Join Conditions
 
+In all examples so far, we used a single column to uniquely identify the rows in a given table. There are times when we cannot use a single column to uniquely identify records in a given table. In these cases we use a combination of values in multiple columns to uniquely identify each record.
+
+Here, we need multiple conditions to join two tables.
+
+In some tables we have a composite primary key. A composite primary key contains more than one column. When you have a table with a composite primary key you need to learn how to join that table with other tables:
+
+        USE sql_store;
+        SELECT *
+        FROM order_items oi
+        JOIN order_item_notes oin
+            ON oi.order_id = oin.order_id
+            AND oi.product_id = oin.product_id
+    
 <a name="22"></a>
 #### Implicit Join Syntax
+
+We have the following basic JOIN (explicit join):
+
+        SELECT *
+        FROM orders o
+        JOIN customers c
+            ON o.customer_id = c.customer_id 
+            
+There is another way to write this query using implicit join syntax:
+
+        SELECT *
+        FROM orders o, customers c
+        WHERE o.customer_id = c.customer_id 
+
+Same as explicit join, we will get 10 records (we have 10 in each orders and customers tables).
+
+Although MySQL supports this syntax I suggest you not to use this implicit join syntax b/c if you accidentally forget to type the WHERE clause you will get a cross join:
+
+        SELECT *
+        FROM orders o, customers c
+
+In this case every record in the orders table is joined with every record in the customers table and we end up having 100 records! Later in the section we talk in more details about cross join.
+
+Lesson ----> avoid using implicit join syntax and instead use the explicit join syntax!
 
 <a name="23"></a>
 #### Outer Joins
 
+With the (INNER) JOIN we only get the records meeting the condition we specified in JOIN (after ON) but what if we want to get other records, not meeting the condition, as well? Use OUTER JOIN
+
+We have two types of (OUTER) JOIN:
+
++ LEFT, all the records in the LEFT table (the one comes first in front of FROM is returned whether or not the JOIN condition is True)
+
++ RIGHT, all the records in the RIGHT table (the one comes in front of JOIN is returned whether or not the JOIN condition is True)
+
+        USE sql_store; 
+        SELECT p.product_id, 
+                p.name, 
+                oi.quantity 
+        FROM products p 
+        LEFT JOIN order_items oi 
+            ON p.product_id = oi.product_id
+
+So whenever you see JOIN it is inner join and LEFT/RIGHT JOIN it is outer join. As a best practice avoid RIGHT JOIN and always use LEFT JOIN instead!
+
 <a name="24"></a>
 #### Outer Joins between Multiple Tables
 
+As a best practice avoid RIGHT JOIN and always use LEFT JOIN instead! It is easier to visualize your query.
+
+        USE sql_store;
+        SELECT 
+            o.order_id,
+            o.order_date,
+            c.first_name AS customer, 
+            sh.name AS shipper,
+            os.name AS status 
+        FROM orders o
+        JOIN customers c 
+            ON o.customer_id = c.customer_id 
+        LEFT JOIN shippers sh
+            ON o.shipper_id = sh.shipper_id 
+        JOIN order_statuses os
+            ON o.status = os.order_status_id 
+    
 <a name="25"></a>
 #### Self Outer Joins
 
+        USE sql_hr;
+        SELECT 
+            e.employee_id,
+            e.first_name AS employee
+            m.first_name AS manager 
+        FROM employees e
+        LEFT JOIN employees m
+            ON e.reports_to = m.employee_id
+    
 <a name="26"></a>
 #### The Using Clause
 
+We can use USING clause with both INNER and OUTER JOIN.
+
+We use USING clause to make our query shorter and cleaner, we use it whenever the column name in both tables are EXACTLY the same, like
+
+        USE sql_store;
+        SELECT 
+            o.order_id,
+            c.first_name,
+            sh.name AS shipper
+        FROM orders o
+        JOIN customers c
+            ON o.customer_id = c.customer_id 
+    
+The simpler query using USING keyword is:
+
+        USE sql_store;
+        SELECT 
+            o.order_id,
+            c.first_name,
+            sh.name AS shipper
+        FROM orders o
+        JOIN customers c
+            USING (customer_id)  
+        LEFT JOIN shippers sh
+            USING (shipper_id) 
+            
+Again remember, USING clause works ONLY if the columns are of exactly the same name across multiple tables.
+
+What if we have multiple columns in our JOIN condition? If you remember we had the following before:
+
+        SELECT *
+        FROM order_items oi
+        JOIN order_item_notes oin
+            ON oi.order_id = oin.order_id
+            AND oi.product_id = oin.product_id
+    
+The above JOIN condition is messy we can simplify it using USING keyword:
+
+        SELECT *
+        FROM order_items oi
+        JOIN order_item_notes oin
+            USINT (order_id, product_id) 
+    
+Exercise:
+
+Write a query to select payments from the payments table and produce a report including date, client, amount, and name of the payment method:
+
+        USE sql_invoicing;
+        SELECT 
+            p.date,
+            c.name AS client,
+            p.amount,
+            pm.name AS payment_method 
+        FROM clients c
+        JOIN payments p USING (client_id)
+        JOIN payment_methods pm
+            ON p.payment_method = pm.payment_method_id -- here I cannot use USING clause b/c the name of the column in the p and pm tables are NOT the same! 
+    
 <a name="27"></a>
 #### Natural Joins
+
+In MySQL we also have another simpler way to join two tables, which is easier to code BUT NOT RECOMMENDED! Because it sometimes produces unexpected results. You will be presented here to make sure you understand it if you see it somewhere but don’t use it yourself.
+
+        USE sql_store;
+        SELECT
+            o.order_id,
+            c.first_name
+        FROM orders o
+        NATURAL JOIN customers c
+
+With natural JOIN we don’t explicitly specify the column names. The database engine looks at these two tables and join them based on the common columns i.e., columns that have the same names that is the reason this query is shorter to write.
 
 <a name="28"></a>
 #### Cross Joins
 
+We use cross JOIN to join every record in the first table with every record in the second table. So that is why we don’t have a condition using ON keyword in the cross JOIN.
+
+        USE sql_store;
+        SELECT 
+            c.first_name AS customer,
+            p.name AS product
+        FROM customers c
+        CROSS JOIN products p
+        ORDER BY c.first_name 
+
+What we have above is called the explicit syntax for CROSS JOIN. We also have implicit syntax which looks like the following: Instead of typing CROSS JOIN products p we type multiple tables in FROM clause like:
+
+        USE sql_store;
+        SELECT
+            c.first_name AS customer,
+            p.name AS product
+        FROM customers c, products p
+        ORDER BY c.first_name
+
+MOSH advice: he prefers the explicit syntax b/c it is more clear.
+
 <a name="29"></a>
 #### Unions
+
+So far we learned that how to join columns from multiple tables. But in SQL we can also JOIN rows from multiple tables, which is extremely powerful.
+
+Using UNION operator we can combine records from multiple queries.
+
+        USE sql_store;
+        SELECT 
+            Order_id,
+            Order_date,
+            ‘Active’ AS status
+        FROM orders o
+        WHERE o.order_date >= “2019-01-01” -- here I hard coded the current year date, which does not deliver the desired results next year and so we will learn how to not hard code this later in the course. 
+        UNION
+        SELECT 
+            ordare_id,
+            order_date,
+            ‘Archived’ AS status 
+        FROM orders o
+        WHERE o.order_date < “2019-01-01”
+
+In the above both the queries are from the same table, you also can query from different tables and then using UNION operator you can combine the results into one result set.
+
+Like:
+
+        SELECT first_name
+        FROM customers
+        UNION
+        SELECT name
+        FROM shippers 
+
+The name of the column in the returned results is based on the first query like in the above the name of the column in the returned result is first_name. we can also have an alias like SELECT first_name AS full_name.
+
+Just remember the number of columns each query returns should be equal otherwise you will get an error. We get an error running the following b/c the first query returns 2 columns and the second one returns only one column!
+
+        SELECT first_name, last_name 
+        FROM customers
+        UNION
+        SELECT name
+        FROM shippers 
+
+Exercise:
+
+Points < 2000 >>> type would be Bronze 
+2000 <Points < 3000 >>> type would be Silver  
+Points > 3000 >>> type would be Gold 
+And also sort the results by the first name of the customers. 
+My solution:
+
+        USE sql_store;
+        SELECT 
+            customer_id,
+            first_name,
+            points,
+            ‘Gold’ AS type
+        FROM customers 
+        WHERE points > 3000
+        UNION
+        SELECT 
+            customer_id,
+            first_name,
+            points,
+            ‘Silver’ AS type
+        FROM customers
+        WHERE points BETWEEN 2000 AND 3000
+        UNION
+        SELECT 
+            customer_id,
+            first_name,
+            points,
+            ‘Bronze’ AS type
+        FROM customers
+        WHERE points < 2000
+        ORDER BY first_name 
+
+
+        
