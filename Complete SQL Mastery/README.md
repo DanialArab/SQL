@@ -32,7 +32,21 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     12. [Cross Joins](#28)
     13. [Unions](#29)
 4. [Inserting, Updating, and Deleting Data](#30)
+    1. [Column attributes](#31)
+    2. [VARCHAR vs. CHAR](#32)
+    3. [Inserting a single row into a table](#33)
+    4. [Multiline string](#34)
+    5. [Inserting Multiple Rows](#35)
+    6. [Inserting Hierarchical rows](#36)
+    7. [Creating a Copy of a Table](#37)
+    8. [Updating a Single Row](#38)
+    9. [Updating Multiple Rows](#39)
+    10. [Using Subqueries in Updates](#40)
+    11. [Deleting rows](#41)
+5. [Summarizing Data](#42)
 
+
+   
 <a name="1"></a>
 ### Introduction 
 
@@ -746,5 +760,42 @@ My solution:
         WHERE points < 2000
         ORDER BY first_name 
 
+<a name="30"></a>
+### Inserting, Updating, and Deleting Data
 
-        
+
+<a name="31"></a>
+#### Column attributes
+
+<a name="32"></a>
+#### VARCHAR vs. CHAR
+
+<a name="33"></a>
+#### Inserting a single row into a table
+
+<a name="34"></a>
+#### Multiline string
+
+<a name="35"></a>
+#### Inserting Multiple Rows
+
+<a name="36"></a>
+#### Inserting Hierarchical rows
+
+<a name="37"></a>
+#### Creating a Copy of a Table
+
+<a name="38"></a>
+#### Updating a Single Row
+
+<a name="39"></a>
+#### Updating Multiple Rows
+
+<a name="40"></a>
+#### Using Subqueries in Updates
+
+<a name="41"></a>
+#### Deleting rows
+
+<a name="42"></a>
+### Summarizing Data
