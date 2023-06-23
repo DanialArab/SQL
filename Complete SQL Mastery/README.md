@@ -2660,7 +2660,7 @@ we can have multiple attributes in a function.
             RETURN IFNULL(risk_factor, 0); 
         END 
         """)
-
+        
         con.commit()
         cursor.close()
       
