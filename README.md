@@ -74,7 +74,7 @@ The following table details the Leetcode database question I solved so far:
 <a name="3"></a>
 ### Workflow to generate the Leetcode databases in the MySQL server
 
-The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
+The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details can be found in the Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode_Database_Questions.ipynb">Leetcode_Database_Questions</a>**.):
 
 
 #### 1. Connecting to the MySQL server  
