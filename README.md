@@ -6,11 +6,14 @@ This repo documents my solutions to **Leetcode - Database questions using SQL**.
 1. [Leetcode - Database Questions](#1)
     1. [Leetcode Questions](#2)
     2. [Workflow to generate the Leetcode databases in the MySQL server](#3)
-3. [Complete SQL Mastery](#4)
+2. [Complete SQL Mastery](#4)
 
 
 <a name="1"></a>
-## Leetcode Questions
+## Leetcode - Database Questions
+
+<a name="2"></a>
+### Leetcode Questions
 
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
@@ -67,15 +70,13 @@ This repo documents my solutions to **Leetcode - Database questions using SQL**.
 |50 |1527| Patients With a Condition | Easy |
 
 
-
-
 <a name="3"></a>
-## Workflow to generate the Leetcode databases in the MySQL server
+### Workflow to generate the Leetcode databases in the MySQL server
 
 The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
 
 
-## 1. Connecting to the MySQL server  
+#### 1. Connecting to the MySQL server  
 
 
     import os
@@ -94,7 +95,7 @@ The following steps detail the functions that need to be executed to generate th
     except pymysql.Error as e:
         print(f"An error occurred while connecting to the database: {e}")
     
-## 2. Connecting to a database 
+#### 2. Connecting to a database 
 
 The following function provides a handy connection to the desired database, and the user just needs to pass the name of the database he/she wants to make a query on. It serves like USE keyword in SQL.
     
@@ -109,7 +110,7 @@ The following function provides a handy connection to the desired database, and 
 
         return conn
   
-## 3. Creating a database in the MySQL server and populating it with the data based on the SQL Schema of the Leetcode question
+#### 3. Creating a database in the MySQL server and populating it with the data based on the SQL Schema of the Leetcode question
 
 In terms of Leetcode database questions, the database first need to be regenerated. The function **database_creator** is executed to create a database and then the function **insert_data_to_table** is executed to populate the created database with the data provided by the SQL Schema, found in the Leetcode.com for each SQL questions:
     
@@ -188,7 +189,7 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Close the connection
         conn.close()
 
-## 4. Getting the name of databases in the MySQL server
+#### 4. Getting the name of databases in the MySQL server
 
     def database_names():
 
@@ -209,7 +210,7 @@ In terms of Leetcode database questions, the database first need to be regenerat
         cursor.close()
         con.close()
 
-## 5. Getting the name of the tables in the database
+#### 5. Getting the name of the tables in the database
 
     def table_names (database):
 
@@ -223,7 +224,7 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Print the list of tables
         return tables
 
-## 6. Deleting a database
+#### 6. Deleting a database
 
     def delete_database(database):
         conn = connector(database=None)
