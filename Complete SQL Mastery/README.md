@@ -73,7 +73,18 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     4. [The WITH CHECK OPTION clause](#69)
     5. [ Other benefits of VIEWS](#70)
 9. [Stored Procedures and Functions](#71)
-    1. [](#72)
+    1. [What Stored Procedures are](#72)
+    2. [Creating a Stored Procedure](#73)
+    3. [Dropping Stored Procedures](#74)
+    4. [Parameters](#75)
+    5. [Parameters with Default Value](#76)
+    6. [Parameter Validation](#77)
+    7. [Output Parameters](#78)
+    8. [Variables](#79)
+    9. [Functions](#80)
+    10. [Other Conventions](#81)
+10. [Triggers and Events](#82)
+    1. [](#83) 
     
 
    
@@ -2122,13 +2133,36 @@ VIEWS's benefits:
 <a name="71"></a>
 ### Stored Procedures and Functions
 
+<a name="72"></a>
+#### What Stored Procedures are
 
-<a name="66"></a>
-#### 
+<a name="73"></a>
+#### Creating a Stored Procedure
 
-<a name="66"></a>
-#### 
+<a name="74"></a>
+#### Dropping Stored Procedures
 
-<a name="66"></a>
-#### 
+<a name="75"></a>
+#### Parameters
+
+<a name="76"></a>
+#### Parameters with Default Value
+
+
+<a name="77"></a>
+#### Parameter Validation
+
+
+<a name="78"></a>
+#### Output Parameters
+
+<a name="79"></a>
+#### Variables
+
+<a name="80"></a>
+#### Functions
+
+<a name="81"></a>
+#### Other Conventions
+
 
