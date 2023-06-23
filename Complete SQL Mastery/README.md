@@ -2136,31 +2136,552 @@ VIEWS's benefits:
 <a name="72"></a>
 #### What Stored Procedures are
 
+Where you are building an application that has a database, whare you are going to write these SQL statements?
+
+In your application code? NO, because it makes your application code messy and hard to maintain. So we keep our SQL code inside the Stored procedures or function.
+
+A stored procedures is a database object that contains a block of SQL code. In our application code we simply call these procedures to get or save the data
+
+Stored procedures benefits:
+
++ Store and organize SQL code
++ Faster execution
++ Data security
+
 <a name="73"></a>
 #### Creating a Stored Procedure
 
+We can create a stored procedure like:
+
+        cursor = con.cursor()
+        
+        #cursor.execute("DELIMITER $$") # I DO NOT NEED THIS WHEN USING PYTHON
+        
+        cursor.execute("""
+        
+        CREATE PROCEDURE get_clients()
+        
+        BEGIN 
+            SELECT * FROM clients; 
+        END
+        
+        """)
+        # cursor.execute("DELIMITER ;") # I DO NOT NEED THIS WHEN USING PYTHON 
+
+        con.commit()
+        cursor.close()
+
+Some points:
+
+The common convention among MySQL developers: use lowercase letters and separate words using underscore when naming your stored procedure
+
+What we have in between the BEGIN and the END is called the body of the procedure.
+
+In MySQL we need to terminate each statement in the body of the stored procedure using a semicolon (even if we have only one single statement in the body), this is specific to MySQL.
+
+We need to change the default DELIMITER, by convention, people use $$, we need this to indicate all the statements should be considered as one single unit, rather than individual statements using a semicolon (i mean the statements in the body of the stored procedures). W need to repeat this new DELIMITER after END, after that we need to change the default DELIMITER to the semicolon again (in other database management system like SQL server we don't have to change the default delimiter (also in my case when I am connecting to the MySQL Database with Python (Pandas) I DONOT NEED TO CHANGE THIS DEFAULT DELIMITER). Here is the code to change the default delimiter:
+
+          DELIMITER $$
+                CREATE PROCEDURE get_clients()
+                BEGIN
+                    SELECT * FROM clients
+                END $$
+
+          DELIMITER ; 
+
+I also can use one of my views to create the stored procedure, this is better because I also can see the balance column
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        
+        CREATE PROCEDURE get_invoices_with_balance_from_view ()
+        
+        BEGIN
+          SELECT *
+          FROM invoices_with_balance 
+          WHERE balance > 0; 
+        END
+        """)
+
+        con.commit()
+        cursor.close()
+We can call the stored procedure using CALL statement. We mostly call the stored procedures in our application code in python for example, but if we want to call it in SQL code we do it like
+
+        CALL get_clients()
+
+In my case in Python:
+
+        pd.read_sql("""
+        CALL get_invoices_with_balance_from_view ()
+        """, con)
+
+    
 <a name="74"></a>
 #### Dropping Stored Procedures
+
+Here is my function to drop the stored procedure:
+
+        def delete_stored_procedure(database, stored_procedure_name):
+        
+            con = connector(database)
+            cursor = con.cursor()
+        
+            cursor.execute(f"DROP PROCEDURE IF EXISTS {stored_procedure_name}")
+        
+            # Commit the transaction
+            con.commit()
+        
+            # Close the connection
+            con.close()
+
+Note: I added IF EXISTS to prevent raising errors in case there is no stored procedure with the name we specified to be dropped.
 
 <a name="75"></a>
 #### Parameters
 
+We typically use a parameter to pass a value to the stored procedure.
+
+        cursor = con.cursor()
+        
+        cursor.execute("DROP PROCEDURE IF EXISTS get_clients_by_state")
+        
+        cursor.execute("""
+        
+        CREATE PROCEDURE get_clients_by_state 
+        (
+        state CHAR(2)
+        )
+        BEGIN
+            SELECT *
+            FROM clients c
+            WHERE c.state = state; 
+        END
+        """)
+        
+        con.commit()
+        cursor.close()
+
+        pd.read_sql("""
+        CALL get_clients_by_state('CA')
+        """, con)
+        
+        client_id	name	address	city	state	phone
+        0	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+        
+
 <a name="76"></a>
 #### Parameters with Default Value
+        
+        Here is the code:
+        
+        cursor = con.cursor()
+        
+        cursor.execute("DROP PROCEDURE IF EXISTS get_clients_by_state")
+
+        cursor.execute("""
+        CREATE PROCEDURE get_clients_by_state
+        (
+        state CHAR(2)
+        )
+        BEGIN
+            IF state IS NULL THEN
+                SET state = 'CA';
+            END IF;   **Whenever we use **IF statement** we should terminate it with **END IF;**.**
+        
+            SELECT *
+            FROM clients c
+            WHERE c.state = state; 
+        END
+        """)
+
+        con.commit()
+        cursor.close()
+        
+        pd.read_sql("""
+        CALL get_clients_by_state ('CA')
+        """, con)
+        
+        client_id	name	address	city	state	phone
+        0	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+
+another example:
+
+        cursor = con.cursor()
+        
+        cursor.execute("DROP PROCEDURE IF EXISTS get_clients_by_state")
+        
+        cursor.execute("""
+        
+        CREATE PROCEDURE get_clients_by_state
+        (
+        state CHAR(2)
+        )
+        BEGIN
+            IF state IS NULL THEN
+                SELECT * FROM clients;
+            ELSE 
+                SELECT * FROM clients c 
+                WHERE c.state = state; 
+            END IF; 
+        END
+        
+        """)
+        
+        con.commit()
+        cursor.close()
+        
+        pd.read_sql("""
+        CALL get_clients_by_state(NULL)
+        """, con)
+        
+            client_id	name	address	city	state	phone
+        0	1	Vinte	3 Nevada Parkway	Syracuse	NY	315-252-7305
+        1	2	Myworks	34267 Glendale Parkway	Huntington	WV	304-659-1170
+        2	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+        3	4	Kwideo	81674 Westerfield Circle	Waco	TX	254-750-0784
+        4	5	Topiclounge	0863 Farmco Road	Portland	OR	971-888-9129
+        
+        pd.read_sql("""
+        CALL get_clients_by_state('CA')
+        """, con)
+        
+        client_id	name	address	city	state	phone
+        0	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+        BUT the above approach is a bit verbose and amateurous the better way is as follows:
+        
+        cursor = con.cursor()
+        
+        cursor.execute("DROP PROCEDURE IF EXISTS get_clients_by_state")
+        
+        cursor.execute("""
+        
+        CREATE PROCEDURE get_clients_by_state
+        (
+        state CHAR(2)
+        )
+        BEGIN
+            SELECT * FROM clients c 
+            WHERE c.state = IFNULL(state, c.state); 
+        END
+        
+        """)
+        
+        con.commit()
+        cursor.close()
+        pd.read_sql("""
+        CALL get_clients_by_state(NULL)
+        """, con)
+        
+            client_id	name	address	city	state	phone
+        0	1	Vinte	3 Nevada Parkway	Syracuse	NY	315-252-7305
+        1	2	Myworks	34267 Glendale Parkway	Huntington	WV	304-659-1170
+        2	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+        3	4	Kwideo	81674 Westerfield Circle	Waco	TX	254-750-0784
+        4	5	Topiclounge	0863 Farmco Road	Portland	OR	971-888-9129
 
 
 <a name="77"></a>
 #### Parameter Validation
 
+So far we saw the procedures to SELECT data but we also may use procedures to INSERT, UPDATE, or DELETE data.
+
+        cursor = con.cursor()
+        
+        cursor.execute("DROP PROCEDURE IF EXISTS make_payment")
+        cursor.execute("""
+        
+        CREATE PROCEDURE make_payment
+        (
+            invoice_id INT,
+            payment_amount DECIMAL(9, 2),
+            payment_date DATE
+            )
+        
+        
+        BEGIN
+            UPDATE invoices i
+            SET 
+                i.payment_total = payment_amount, 
+                i.payment_date = payment_date 
+            WHERE i.invoice_id = invoice_id;     
+        
+        END
+        """)
+
+        con.commit()
+        cursor.close()
+        cursor = con.cursor()
+
+Since the make_payment stored procedure I created only performs an UPDATE operation, it does not produce any results that can be returned by the pd.read_sql() function, so I need to use cursor object to call it:
+
+        cursor.execute("""
+        CALL make_payment (2, 100, '2019-01-01')
+        """)
+        
+        con.commit()
+        cursor.close()
+        
+        pd.read_sql("""
+        SELECT *
+        FROM invoices
+        """, con)
+        
+
+        invoice_id	number	client_id	invoice_total	payment_total	invoice_date	due_date	payment_date
+        0	2	03-898-6735	5	175.32	100.00	2019-06-11	2019-07-03	2019-01-01
+        1	3	20-228-0335	5	147.99	0.00	2019-07-31	2019-08-20	None
+        2	4	56-934-0748	3	152.21	0.00	2019-03-08	2019-03-28	None
+        3	5	87-052-3121	5	169.36	0.00	2019-07-18	2019-08-07	None
+        4	6	75-587-6626	1	157.78	74.55	2019-01-29	2019-02-18	2019-01-03
+        5	7	68-093-9863	3	133.87	0.00	2019-09-04	2019-09-24	None
+        6	8	78-145-1093	1	189.12	0.00	2019-05-20	2019-06-09	None
+        7	9	77-593-0081	5	172.17	0.00	2019-07-09	2019-07-29	None
+        8	10	48-266-1517	1	159.50	0.00	2019-06-30	2019-07-20	None
+        9	11	20-848-0181	3	126.15	0.03	2019-01-07	2019-01-27	2019-01-11
+        10	13	41-666-1035	5	135.01	87.44	2019-06-25	2019-07-15	2019-01-26
+        11	15	55-105-9605	3	167.29	80.31	2019-11-25	2019-12-15	2019-01-15
+        12	16	10-451-8824	1	162.02	0.00	2019-03-30	2019-04-19	None
+        13	17	33-615-4694	3	126.38	68.10	2019-07-30	2019-08-19	2019-01-15
+        14	18	52-269-9803	5	180.17	42.77	2019-05-23	2019-06-12	2019-01-08
+        15	19	83-559-4105	1	134.47	0.00	2019-11-23	2019-12-13	None
+        
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        CALL make_payment (2, -100, '2019-01-01')
+        """)
+
+        con.commit()
+        cursor.close()
+
+        pd.read_sql("""
+        SELECT *
+        FROM invoices
+        """, con)
+        invoice_id	number	client_id	invoice_total	payment_total	invoice_date	due_date	payment_date
+        0	2	03-898-6735	5	175.32	-100.00	2019-06-11	2019-07-03	2019-01-01
+        1	3	20-228-0335	5	147.99	0.00	2019-07-31	2019-08-20	None
+        2	4	56-934-0748	3	152.21	0.00	2019-03-08	2019-03-28	None
+        3	5	87-052-3121	5	169.36	0.00	2019-07-18	2019-08-07	None
+        4	6	75-587-6626	1	157.78	74.55	2019-01-29	2019-02-18	2019-01-03
+        5	7	68-093-9863	3	133.87	0.00	2019-09-04	2019-09-24	None
+        6	8	78-145-1093	1	189.12	0.00	2019-05-20	2019-06-09	None
+        7	9	77-593-0081	5	172.17	0.00	2019-07-09	2019-07-29	None
+        8	10	48-266-1517	1	159.50	0.00	2019-06-30	2019-07-20	None
+        9	11	20-848-0181	3	126.15	0.03	2019-01-07	2019-01-27	2019-01-11
+        10	13	41-666-1035	5	135.01	87.44	2019-06-25	2019-07-15	2019-01-26
+        11	15	55-105-9605	3	167.29	80.31	2019-11-25	2019-12-15	2019-01-15
+        12	16	10-451-8824	1	162.02	0.00	2019-03-30	2019-04-19	None
+        13	17	33-615-4694	3	126.38	68.10	2019-07-30	2019-08-19	2019-01-15
+        14	18	52-269-9803	5	180.17	42.77	2019-05-23	2019-06-12	2019-01-08
+        15	19	83-559-4105	1	134.47	0.00	2019-11-23	2019-12-13	None
+        In these terms, we need to make sure that our procedure does not accedidentaly store bad data (like -100 in the above as payment_total) in our database!
+
+SIGNAL in SQL is like throwing an exception in other programming languages.
+
+        cursor = con.cursor()
+        
+        cursor.execute("DROP PROCEDURE IF EXISTS make_payment")
+        
+        cursor.execute("""
+        CREATE PROCEDURE make_payment
+        (
+            invoice_id INT,
+            payment_amount DECIMAL(9, 2),
+            payment_date DATE
+        )
+        BEGIN
+        
+            IF payment_amount <= 0 THEN 
+                SIGNAL SQLSTATE '22003' 
+                    SET MESSAGE_TEXT = 'Invalid payment amount'; 
+            END IF; 
+        
+            UPDATE invoices i
+                SET i.payment_total = payment_amount,
+                    i.payment_date = payment_date
+            WHERE i.invoice_id = invoice_id; 
+        END
+        """)
+        
+        con.commit()
+        cursor.close()
+        Now
+        
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        CALL make_payment (2, -100, '2019-01-01')
+        """)
+        
+        con.commit()
+        cursor.close()
+
+
+        ~/.local/lib/python3.6/site-packages/pymysql/err.py in raise_mysql_exception(data)
+            141     if errorclass is None:
+            142         errorclass = InternalError if errno < 1000 else OperationalError
+        --> 143     raise errorclass(errno, errval)
+        
+        OperationalError: (1644, 'Invalid payment amount')
+        SQLSTATE errors: https://www.ibm.com/docs/en/db2-for-zos/11?topic=codes-sqlstate-values-common-error
+
+SET MESSAGE_TEXT is optional but a good practice
+
+So it is a good practice to check the parameters of a stored procedure before before making any changes to the data, but too much of a good thing is a bad thing so don't write too much validation logics, keep it to what is absolutely essential.
 
 <a name="78"></a>
 #### Output Parameters
 
+We can also use parameters to return values to the calling programs.
+
+By default, all the parameters in the stored procedure are input parameters meaning we can only use them to pass values to the stored procedure. If we prefix them with keyword OUT we mark them as output parameters meaning we can use them to get values from these procedure. We also need to define user defined variables, the ones prefixed with @ in the code below. like:
+
+        con = connector('sql_invoicing')
+        cursor = con.cursor()
+        
+        
+        cursor.execute("SET @invoices_count = 0")
+        cursor.execute("SET @invoices_total = 0")
+        
+        cursor.execute("DROP PROCEDURE IF EXISTS get_unpaid_invoices_for_client")
+        cursor.execute("""
+        CREATE PROCEDURE get_unpaid_invoices_for_client
+        (
+            client_id INT,
+            OUT invoices_count INT,
+            OUT invoices_total DECIMAL(9, 2)
+        )
+        
+        BEGIN
+        
+            SELECT 
+                COUNT(*),
+                SUM(invoice_total)
+            INTO invoices_count, invoices_total
+            FROM invoices i
+            WHERE i.client_id = client_id AND payment_total = 0; 
+        END
+        """)
+        
+        con.commit()
+        cursor.close()
+
+When calling the stored procedure, I also need to pass these output variables as well, like in the following:
+
+        cursor = con.cursor()
+        
+        cursor.execute("CALL get_unpaid_invoices_for_client(3, @invoices_count, @invoices_total)")
+        cursor.execute("SELECT @invoices_count, @invoices_total")
+        output = cursor.fetchone()
+        print(output)
+        con.commit()
+        cursor.close()
+        
+        (2, Decimal('286.08'))
+
+Using output parameters requires a bit more effort to read data and I would suggest avoid them unless you have a valid reason to use them.
+
 <a name="79"></a>
 #### Variables
 
+User or session variables: We quite often use them when defining a stored procedure that has output parameters like in the previous point. They are the variables that will be in memory during the entire client session, when the client disconnects from MySQL these are freed up. We define them using SET statement and we prefix them using an @ like
+
+        SET @invoice_count = 0
+
+Local variables; they are defined inside the stored procedure or function. These variables do not stay in memory during the entire session and as soon as our stored procedure finishes execution these variables are freed up. We quite often use these variables to perform calculations in our stored procedures. We use declare statement to declare a local variable on the top right after the BEGIN statement.
+
+        cursor = con.cursor()
+        cursor.execute("DROP PROCEDURE IF EXISTS get_risk_factor")
+        cursor.execute("""
+        CREATE PROCEDURE get_risk_factor()
+        BEGIN
+          DECLARE risk_factor DECIMAL(9, 2) DEFAULT 0;
+          DECLARE invoices_total DECIMAL(9, 2);
+          DECLARE invoices_count INT; 
+        
+          SELECT COUNT(*), SUM(invoice_total)
+          INTO invoices_count, invoices_total
+          FROM invoices;
+        
+          SET risk_factor = invoices_total / invoices_count * 5;
+        
+          SELECT risk_factor; 
+        END 
+        
+        """)
+        con.commit()
+        cursor.close()
+        
+        pd.read_sql("""
+        CALL get_risk_factor
+        """, con)
+        
+        risk_factor
+        0	777.75
+
+
 <a name="80"></a>
 #### Functions
+
+
++ Functions are pretty similar to the stored procedures BUT they can only return a single value. So functions unlike stored procedures cannot return results set with multiple rows and columns.
++ One of the main differences between functions and stored procedures is the RETURNS statement where we specify the type of value the functions returns which could be any data type in MySQL.
++ Right after the RETURNS statement, we need to set the function's attributes, which could be one of the following (every MySQL function should have at least one attribute):
+
+    + DETERMINISTIC meaning if we give the function the same set of values it returns the same results every time (in short it means the same output for the same input)
+    + READS SQL DATA
+    + MODIFIES SQL DATA
+we can have multiple attributes in a function.
+
+        cursor = con.cursor()
+        
+        cursor.execute("DROP FUNCTION IF EXISTS get_risk_factor_for_client")
+        cursor.execute("""
+        CREATE FUNCTION get_risk_factor_for_client
+        (
+            client_id INT
+        )
+        RETURNS INTEGER
+        READS SQL DATA
+        BEGIN 
+            DECLARE risk_factor DECIMAL(9, 2) DEFAULT 0;
+            DECLARE invoices_total DECIMAL(9, 2);
+            DECLARE invoices_count INT; 
+        
+            SELECT COUNT(*), SUM(invoice_total)
+            INTO invoices_count, invoices_total
+            FROM invoices i
+            WHERE i.client_id = client_id; 
+        
+            SET risk_factor = invoices_total / invoices_count * 5;
+        
+            RETURN IFNULL(risk_factor, 0); 
+        END 
+        """)
+
+        con.commit()
+        cursor.close()
+      
+We can use this function just like the built-in functions in the SELECT statements:
+
+        pd.read_sql("""
+        SELECT 
+            client_id,
+            name,
+            get_risk_factor_for_client(client_id) AS risk_factor
+        FROM clients
+        """, con)
+        
+        client_id	name	risk_factor
+        0	1	Vinte	803
+        1	2	Myworks	0
+        2	3	Yadel	706
+        3	4	Kwideo	0
+        4	5	Topiclounge	817
+
+Similar to views and stored procedures it is a good practice to save your functions in SQL files and put them under the source control.
 
 <a name="81"></a>
 #### Other Conventions
