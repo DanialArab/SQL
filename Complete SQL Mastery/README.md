@@ -1697,39 +1697,184 @@ Takeaway: You can write a subquery in the FROM clause of the SELECT statement, b
 <a name="57"></a>
 #### NUMERIC Function
 
-ROUND
-TRUNCATE
-CEILING
-FLOOR
-ABS
-RAND
+        ROUND
+        TRUNCATE
+        CEILING
+        FLOOR
+        ABS
+        RAND
+        
 https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html
 
 <a name="58"></a>
 #### STRING Functions
 
+        LENGTH
+        LOWER
+        UPPER
+        LTRIM
+        RTRIM
+        TRIM
+        LEFT
+        RIGHT
+        SUBSTRING
+        LOCATE
+        REPLACE
+        CONCAT
+
+https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
 
 <a name="59"></a>
 #### DATE Functions
 
+        NOW
+        CURDATE
+        CURTIME
+        YEAR
+        MONTH
+        DAY
+        HOUR
+        MINUTE
+        SECOND
+        DAYNAME
+        MONTHNAME
+        EXTRACT
+
 <a name="60"></a>
 #### FORMATTING Date and Times
+
+        DATE_FORMAT
+    
+        https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html
+
+        TIME_FORMAT
 
 <a name="61"></a>
 #### CALCULATING Dates and Times
 
+        DATE_ADD
+        DATE_SUB
+        DATEDIFF
+        TIME_TO_SEC
+
 <a name="62"></a>
 #### IFNULL and COALESCE Functions
+
+        pd.read_sql("""
+        SELECT 
+            order_id,
+            IFNULL(shipper_id, 'Not assigned') AS shipper
+        FROM orders""", con)
+        order_id	shipper
+        0	1	Not assigned
+        1	3	Not assigned
+        2	4	Not assigned
+        3	6	Not assigned
+        4	8	Not assigned
+        5	9	1
+        6	10	2
+        7	5	3
+        8	2	4
+        9	7	4
+
+        pd.read_sql("""
+        SELECT 
+            order_id,
+            COALESCE(shipper_id, comments, 'Not assigned') AS shipper
+        FROM orders""", con)
+        order_id	shipper
+        0	1	Not assigned
+        1	2	4
+        2	3	Not assigned
+        3	4	Not assigned
+        4	5	3
+        5	6	Aliquam erat volutpat. In congue.
+        6	7	4
+        7	8	Mauris enim leo, rhoncus sed, vestibulum sit a...
+        8	9	1
+        9	10	2
 
 <a name="63"></a>
 #### IF Function
 
+        pd.read_sql("""
+        SELECT 
+            order_id,
+            customer_id,
+            'Active' AS status
+        FROM orders
+        WHERE order_date >= '2019-01-01'
+        
+        UNION
+        SELECT 
+             order_id,
+            customer_id,
+            'Archived' AS status
+        FROM orders
+        WHERE order_date < '2019-01-01'
+        
+        """, con)
+        order_id	customer_id	status
+        0	1	6	Active
+        1	2	7	Archived
+        2	3	8	Archived
+        3	4	2	Archived
+        4	5	5	Archived
+        5	6	10	Archived
+        6	7	2	Archived
+        7	8	5	Archived
+        8	9	10	Archived
+        9	10	6	Archived
+        
+Using IF function I achieved the same results as above but with much shorted query:
+
+        pd.read_sql("""
+        SELECT 
+            order_id,
+            customer_id, 
+            IF (order_date >= '2019-01-01', 'Active', 'Archived') AS status
+        FROM orders
+        """, con)
+        order_id	customer_id	status
+        0	1	6	Active
+        1	2	7	Archived
+        2	3	8	Archived
+        3	4	2	Archived
+        4	5	5	Archived
+        5	6	10	Archived
+        6	7	2	Archived
+        7	8	5	Archived
+        8	9	10	Archived
+        9	10	6	Archived
+        
 <a name="64"></a>
 #### CASE Operator
-
+        pd.read_sql("""
+        SELECT 
+            CONCAT(first_name, ' ', last_name) AS customer,
+            points,
+            CASE
+                WHEN points < 2000 THEN 'Bronze'
+                WHEN points BETWEEN 2000 AND 3000 THEN 'Silver'
+                WHEN points > 3000 THEN 'Gold'
+            END AS category
+        FROM customers
+        """, con)
+        
+        customer	points	category
+        0	Babara MacCaffrey	2273	Silver
+        1	Ines Brushfield	947	Bronze
+        2	Freddi Boagey	2967	Silver
+        3	Ambur Roseburgh	457	Bronze
+        4	Clemmie Betchley	3675	Gold
+        5	Elka Twiddell	3073	Gold
+        6	Ilene Dowson	1672	Bronze
+        7	Thacher Naseby	205	Bronze
+        8	Romola Rumgay	1486	Bronze
+        9	Levy Mynett	796	Bronze
 
 <a name="65"></a>
 ### VIEWS
 
-<a name="57"></a>
-#### 
+<a name="66"></a>
+#### Creating Views
