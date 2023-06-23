@@ -1386,47 +1386,300 @@ When we use a ROLLUP operator we cannot use a column alias in the GROUP BY claus
 
 <a name="47"></a>
 ### Writing a complex query
-  
-6. [W](#47)
-    1. [](#48)
-    2. [](#49)
-    3. [](#50)
-    4. [)](#51)
-    5. [](#52)
-    6. [](#53)
-    7. [](#54)
-    8. [](#55)
-7. [](#56)
-
 
 <a name="48"></a>
 #### Subqueries
 
+        con = connector('sql_store')
+        pd.read_sql("""
+        SELECT *
+        FROM products
+        WHERE unit_price > (
+                    SELECT unit_price
+                    FROM products
+                    WHERE product_id=3)
+        """, con)
+        
+        product_id	name	quantity_in_stock	unit_price
+        0	2	Pork - Bacon,back Peameal	49	4.65
+        1	4	Brocolinni - Gaylan, Chinese	90	4.53
+
 <a name="49"></a>
 #### Subqueries vs. JOINs
+
+We can achieve the same results using either subquery or JOIN:
+
+The readability and performance determine which way to go! Later, we talk about execution plans where we learn how to write a query that executes faster. But here, let's assume both queries (i.e., the one using subqueries and the one using JOIN execute similarly in terms of speed) then we pay attention to the readability.
+
+Using subquery:
+
+        pd.read_sql("""
+        SELECT *
+        FROM clients
+        WHERE client_id NOT IN(
+                SELECT DISTINCT client_id
+                FROM invoices
+        )
+        """, con)
+        
+        client_id	name	address	city	state	phone
+        0	4	Kwideo	81674 Westerfield Circle	Waco	TX	254-750-0784
+        And using JOIN:
+        
+        pd.read_sql("""
+        SELECT *
+        FROM clients
+        LEFT JOIN invoices USING (client_id)
+        WHERE invoice_id IS NULL
+        """, con)
+
+        client_id	name	address	city	state	phone	invoice_id	number	invoice_total	payment_total	invoice_date	due_date	payment_date
+        0	4	Kwideo	81674 Westerfield Circle	Waco	TX	254-750-0784	None	None	None	None	None	None	None
+
+In this particular example using subqueries makes our query more readable, which is not always true, and sometimes using subqueries makes queries complicated and it is better to go with JOIN! So always pay great attention to the readability of your code.
 
 <a name="50"></a>
 #### ALL
 
+solution using ALL:
+
+Here the subquery returns a list:
+
+        pd.read_sql("""
+        SELECT *
+        FROM invoices
+        WHERE invoice_total > ALL (
+                    SELECT invoice_total
+                    FROM invoices
+                    WHERE client_id = 3
+        
+                    )
+        """, con)
+        
+        invoice_id	number	client_id	invoice_total	payment_total	invoice_date	due_date	payment_date
+        0	2	03-898-6735	5	175.32	8.18	2019-06-11	2019-07-01	2019-02-12
+        1	5	87-052-3121	5	169.36	0.00	2019-07-18	2019-08-07	None
+        2	8	78-145-1093	1	189.12	0.00	2019-05-20	2019-06-09	None
+        3	9	77-593-0081	5	172.17	0.00	2019-07-09	2019-07-29	None
+        4	18	52-269-9803	5	180.17	42.77	2019-05-23	2019-06-12	2019-01-08
+        solution using MAX():
+
+Here my subquery returns a single value:
+
+        pd.read_sql("""
+        SELECT *
+        FROM invoices
+        WHERE invoice_total > (
+                    SELECT MAX(invoice_total)
+                    FROM invoices
+                    WHERE client_id = 3
+                    )
+        """, con)
+        
+        invoice_id	number	client_id	invoice_total	payment_total	invoice_date	due_date	payment_date
+        0	2	03-898-6735	5	175.32	8.18	2019-06-11	2019-07-01	2019-02-12
+        1	5	87-052-3121	5	169.36	0.00	2019-07-18	2019-08-07	None
+        2	8	78-145-1093	1	189.12	0.00	2019-05-20	2019-06-09	None
+        3	9	77-593-0081	5	172.17	0.00	2019-07-09	2019-07-29	None
+        4	18	52-269-9803	5	180.17	42.77	2019-05-23	2019-06-12	2019-01-08
+
+Both queries above (the one using MAX() and the one using ALL) are readable, so go with the one you like more!
+
+Sometimes our subquery returns a single value, sometimes it returns a list, sometimes returns a table.
+
 <a name="51"></a>
 #### ANY or SOME (they are equivalent
+
+        pd.read_sql("""
+        SELECT *
+        FROM clients
+        WHERE client_id IN (
+                SELECT client_id
+                FROM invoices
+                GROUP BY client_id
+                HAVING COUNT(*) >=2
+        )
+        
+        """, con)
+        
+        client_id	name	address	city	state	phone
+        0	1	Vinte	3 Nevada Parkway	Syracuse	NY	315-252-7305
+        1	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+        2	5	Topiclounge	0863 Farmco Road	Portland	OR	971-888-9129
+
+another way to write the above query:
+
+        pd.read_sql("""
+        SELECT *
+        FROM clients
+        WHERE client_id = ANY (
+                SELECT client_id
+                FROM invoices
+                GROUP BY client_id
+                HAVING COUNT(*) >=2
+        )
+        
+        """, con)
+        
+        client_id	name	address	city	state	phone
+        0	1	Vinte	3 Nevada Parkway	Syracuse	NY	315-252-7305
+        1	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+        2	5	Topiclounge	0863 Farmco Road	Portland	OR	971-888-9129
+
+(= ANY) is equivalent to (IN) (choose what you prefer, it is up to you)
 
 <a name="52"></a>
 #### Correlated Subqueries
 
+In correlated subqueries, we have a correlation with the outer query, like we are referencing the alias from the outer query.
+
+        pd.read_sql("""
+        SELECT *
+        FROM employees e
+        WHERE salary > (
+                    SELECT AVG(salary)
+                    FROM employees
+                    WHERE office_id = e.office_id
+                    )
+        """, con)
+        
+        employee_id	first_name	last_name	job_title	salary	reports_to	office_id
+        0	37851	Sayer	Matterson	Statistician III	98926	37270	1
+        1	40448	Mindy	Crissil	Staff Scientist	94860	37270	1
+        2	56274	Keriann	Alloisi	VP Marketing	110150	37270	1
+        3	67009	North	de Clerc	VP Product Management	114257	37270	2
+        4	67370	Elladine	Rising	Social Worker	96767	37270	2
+        5	72540	Guthrey	Iacopetti	Office Assistant I	117690	37270	3
+        6	76196	Mirilla	Janowski	Cost Accountant	119241	37270	3
+        7	84791	Hazel	Tarbert	General Manager	93760	37270	4
+        8	95213	Cole	Kesterton	Pharmacist	86119	37270	4
+        9	98374	Estrellita	Daleman	Staff Accountant IV	70187	37270	5
+        10	115357	Ivy	Fearey	Structural Engineer	92710	37270	5
+
 <a name="53"></a>
 #### EXISTS
+
+Takeaway:
+
+When we use IN operator MySQL executes the subquery and returns the results to the WHERE clause, which in our case is a list of 4 client_id. What if I have millions of elements in this list? negative effect on the performance and in these situations I need to use EXISTS operator, where the subquery does not return a result to the outer query and instead it returns an indication of whether any rows in the subquery match the serach condition! This enhances performance.
+
+So if the subquery we write after the IN operator produces a large result set, it is more efficient to use EXISTS operator.
+
+        pd.read_sql("""
+        SELECT *
+        FROM products p
+        WHERE NOT EXISTS (
+                SELECT DISTINCT product_id
+                FROM order_items
+                WHERE product_id = p.product_id
+                )
+        """, con)
+        
+        product_id	name	quantity_in_stock	unit_price
+        0	7	Sweet Pea Sprouts	98	3.29
 
 <a name="54"></a>
 #### Subqueries in the SELECT clause
 
+So far we only used subqueries in the WHERE clause of a SELECT clause, we can also use subqueries in the SELECT clase and also FROM clause.
+
+        pd.read_sql("""
+        SELECT 
+            invoice_id,
+            invoice_total,
+            (
+                SELECT AVG(invoice_total)
+                FROM invoices 
+            ) AS invoice_average,
+            invoice_total - (
+                SELECT AVG(invoice_total)
+                FROM invoices 
+            ) AS invoice_dif
+        FROM invoices
+        """, con)
+
+        invoice_id	invoice_total	invoice_average	invoice_dif
+        0	1	101.79	152.388235	-50.598235
+        1	2	175.32	152.388235	22.931765
+        2	3	147.99	152.388235	-4.398235
+        3	4	152.21	152.388235	-0.178235
+        4	5	169.36	152.388235	16.971765
+        5	6	157.78	152.388235	5.391765
+        6	7	133.87	152.388235	-18.518235
+        7	8	189.12	152.388235	36.731765
+        8	9	172.17	152.388235	19.781765
+        9	10	159.50	152.388235	7.111765
+        10	11	126.15	152.388235	-26.238235
+        11	13	135.01	152.388235	-17.378235
+        12	15	167.29	152.388235	14.901765
+        13	16	162.02	152.388235	9.631765
+        14	17	126.38	152.388235	-26.008235
+        15	18	180.17	152.388235	27.781765
+        16	19	134.47	152.388235	-17.918235
+
+above query is repetitive and better idea is as follows
+
+        pd.read_sql("""
+        SELECT 
+            invoice_id,
+            invoice_total,
+            (
+                SELECT AVG(invoice_total)
+                FROM invoices 
+            ) AS invoice_average,
+            invoice_total - (SELECT invoice_average) AS invoice_dif
+        FROM invoices
+        """, con)
+        
+        invoice_id	invoice_total	invoice_average	invoice_dif
+        0	1	101.79	152.388235	-50.598235
+        1	2	175.32	152.388235	22.931765
+        2	3	147.99	152.388235	-4.398235
+        3	4	152.21	152.388235	-0.178235
+        4	5	169.36	152.388235	16.971765
+        5	6	157.78	152.388235	5.391765
+        6	7	133.87	152.388235	-18.518235
+        7	8	189.12	152.388235	36.731765
+        8	9	172.17	152.388235	19.781765
+        9	10	159.50	152.388235	7.111765
+        10	11	126.15	152.388235	-26.238235
+        11	13	135.01	152.388235	-17.378235
+        12	15	167.29	152.388235	14.901765
+        13	16	162.02	152.388235	9.631765
+        14	17	126.38	152.388235	-26.008235
+        15	18	180.17	152.388235	27.781765
+        16	19	134.47	152.388235	-17.918235
+
 <a name="55"></a>
 #### Subqueries in the FROM clause
 
+Whenever we use a subquery in a FROM clause we HAVE to give the subquery an alias whether ot not we use that alias. This is required.
 
+Writing subqueries in the FROM clause of a SELECT statement may make our main query more complex, there is a better way to solve this problem using views, we can take this subquery and store it in our database as a view then we can call that view, we look at it later.
 
+Takeaway: You can write a subquery in the FROM clause of the SELECT statement, but reserve it ONLY for simple queries.
 
-
+        pd.read_sql("""
+        SELECT *
+        FROM(
+            SELECT 
+                client_id,
+                name,
+                (SELECT SUM(invoice_total)
+                FROM invoices
+                WHERE client_id = c.client_id) AS total_sales,
+                (SELECT AVG(invoice_total) FROM invoices) AS average,
+                (SELECT total_sales - average) AS difference
+            FROM clients c
+        ) AS sales_summary
+        WHERE total_sales IS NOT NULL
+        """, con)
+        
+        client_id	name	total_sales	average	difference
+        0	1	Vinte	802.89	152.388235	650.501765
+        1	2	Myworks	101.79	152.388235	-50.598235
+        2	3	Yadel	705.90	152.388235	553.511765
+        3	5	Topiclounge	980.02	152.388235	827.631765
    
 <a name="56"></a>
 ### Essential MySQL Functions 
