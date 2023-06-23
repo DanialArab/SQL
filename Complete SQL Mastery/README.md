@@ -7,15 +7,18 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     2. [Relational DBMS](#3)
     3. [Non-relational databases](#4)
     4. [Course structure](#5)
-3. [Array](#2)
-4. [Matrix](#3)
-5. [Singly Linked List ](#4)
-6. [Hash Table](#5)
-7. [Two Pointers](#6)
-8. [String Matching](#7)
-9. [Stack](#8)
-10. [Binary Tree](#9)
-11. [Greedy](#10)
+2. [Retrieving Data From a Single Table](#6)
+    1. [The SELECT statement](#7)
+    2. [The AND, OR, and NOT operators](8#)
+    3. [The IN operator in SQL](#9)
+    4. [The BETWEEN operator in SQL](#10)
+    5. [The LIKE operator](#11)
+    6. [The REGEXP operator](#12)
+    7. [The IS NULL operator](#13)
+    8. [The ORDER BY clause](#14)
+    9. [ The LIMIT clause](#15)
+3. [Retrieving Data From Multiple Tables](#16)
+    1. 
 
 <a name="1"></a>
 ### Introduction 
