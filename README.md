@@ -16,6 +16,23 @@ This repo documents my solutions to **Leetcode - Database questions using SQL**.
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
 |1 | 1757| Recyclable and Low Fat Products | Easy |
+|2 |1378| Replace Employee ID With The Unique Identifier| Easy | 
+| | | Easy | 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+| | | Easy 
+
 
 
 <a name="3"></a>
