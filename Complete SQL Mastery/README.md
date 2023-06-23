@@ -207,10 +207,10 @@ If I just need to execute a simple SELECT statement and retrieve the results as 
 
 But if I need to execute more complex SQL queries that involve multiple statements, transaction management, or other advanced features, then I may need to use a cursor object instead of pd.read_sql().
   
-<a name="6"></a>
+<a name="7"></a>
 ### Retrieving Data From a Single Table 
 
-<a name="7"></a>
+<a name="8"></a>
 #### The SELECT statement
 
         USE sql_store; 
@@ -240,12 +240,12 @@ The three clauses of FROM, WHERE, ORDER BY are all optional but we mostly use th
         
 This is fine for simple queries but as your queries get more complex it is better to put each clause on a new line.
 
-<a name="8"></a>
+<a name="9"></a>
 #### The AND, OR, and NOT operators
 
 AND is operated first! But we use parenthesis to make our code cleaner and easier to understand.
 
-<a name="9"></a>
+<a name="10"></a>
 #### The IN operator in SQL
 
         USE sql_stores; 
@@ -265,7 +265,7 @@ But we can use IN operator to have a cleaner code like
         FROM customers 
         WHERE state NOT IN (‘VA’, ‘GA’, ‘FL’)
     
-<a name="10"></a>
+<a name="11"></a>
 #### The BETWEEN operator in SQL
 
 Whenever we are comparing an attribute with a range of values we can use BETWEEN operator to make you code shorter and cleaner like:
@@ -275,7 +275,7 @@ Whenever we are comparing an attribute with a range of values we can use BETWEEN
         FROM customers 
         WHERE points BETWEEN 1000 AND 3000 -- The range values is inclusive. 
 
-<a name="11"></a>
+<a name="12"></a>
 #### The LIKE operator
 
 How to retrieve rows that match a specific string pattern? Like we want to get the customers whose last names start with “b”:
@@ -302,7 +302,7 @@ Another pattern is “b____y” and you know what it means!
 
 The LIKE operator in MySQL is an older operator and we have a newer one which is more powerful which allows us to search for any string pattern. We will discuss next.
 
-<a name="12"></a>
+<a name="13"></a>
 #### The REGEXP operator
 
 REGEXP is short for the regular expression. REGEXP is extremely powerful when it comes to searching for strings. They allow us to search for more complex patterns. The newer and better operator compared to LIKE.
@@ -353,7 +353,7 @@ We can also supply a range of characters like if we want to have any character f
 
 There are more special characters in MySQL than listed above but honestly the ones on above are the ones you use 90 % of the times. So just learn these and you are good to go!
 
-<a name="13"></a>
+<a name="14"></a>
 #### The IS NULL operator
 
 How to look for records that miss an attribute? Like if we want to find all the customers that don’t have a phone number and like we want to send an email to them and say please provide phone number. To do so we use IS NULL operator:
@@ -368,7 +368,7 @@ Here we also can use NOT operator to get the customers who do have a phone like
         FROM customers
         WHERE phone IS NOT NULL
         
-<a name="14"></a>
+<a name="15"></a>
 #### The ORDER BY clause
 
 How to sort data in your SQL queries?
@@ -431,7 +431,7 @@ BUT avoid this b/c if in the future you have a change in the columns in the SELE
 
 The data would be sorted differently and generates unexpected results and so avoid sorting by column’s positions INSTEAD ALWAYS SORT BY COLUMNS’NAMES.
 
-<a name="15"></a>
+<a name="16"></a>
 #### The LIMIT clause
 
 How to limit the number of records from your query? Like if we only want to get the three first customers we use the LIMIT clause:
@@ -457,10 +457,10 @@ Exercise: get the top three loyal customers, like the ones with highest points
 
 POINT: Again the order matters! The LIMIT clause should always come at the end.
 
-<a name="16"></a>
+<a name="17"></a>
 ### Retrieving Data From Multiple Tables
 
-<a name="17"></a>
+<a name="18"></a>
 #### Inner Joins
 
 So far we only selected columns from a single table but in the real world we quite often select columns from multiple tables. Like:
@@ -510,7 +510,7 @@ We can use an alias to make our code cleaner, NOTE: if you give an alias to a ta
           JOIN customers c 
               ON o.customer_id = c.customer_id
 
-<a name="18"></a>
+<a name="19"></a>
 #### Joining across databases
 
 How to combine columns from tables across multiple databases?
@@ -535,7 +535,7 @@ We need this prefix, sql_inventory.products, b/c the database we write this quer
     
 LESSON ----> I only have to prefix the tables that are NOT part of the current database. And so my query would be different depending on the current database.
 
-<a name="19"></a>
+<a name="20"></a>
 #### Self Joins
 
 In SQL we can also join a table with itself. Let’s write a query to get each employee and their manager
@@ -551,7 +551,7 @@ In SQL we can also join a table with itself. Let’s write a query to get each e
     
 Joining a table with itself is pretty similar to joining a table with another table the only difference is that we have to use different aliases and we have to prefix each column with an alias, this is called self-join.
 
-<a name="20"></a>
+<a name="21"></a>
 #### Joining Multiple Tables
 
 How to join more than TWO tables when writing a query?
@@ -586,7 +586,7 @@ Exercise: write a query to join the payment table with the payment methods table
         JOIN payment_methods pm
             ON p.payment_method = pm.payment_method_id 
 
-<a name="21"></a>
+<a name="22"></a>
 #### Compound Join Conditions
 
 In all examples so far, we used a single column to uniquely identify the rows in a given table. There are times when we cannot use a single column to uniquely identify records in a given table. In these cases we use a combination of values in multiple columns to uniquely identify each record.
@@ -602,7 +602,7 @@ In some tables we have a composite primary key. A composite primary key contains
             ON oi.order_id = oin.order_id
             AND oi.product_id = oin.product_id
     
-<a name="22"></a>
+<a name="23"></a>
 #### Implicit Join Syntax
 
 We have the following basic JOIN (explicit join):
@@ -629,7 +629,7 @@ In this case every record in the orders table is joined with every record in the
 
 Lesson ----> avoid using implicit join syntax and instead use the explicit join syntax!
 
-<a name="23"></a>
+<a name="24"></a>
 #### Outer Joins
 
 With the (INNER) JOIN we only get the records meeting the condition we specified in JOIN (after ON) but what if we want to get other records, not meeting the condition, as well? Use OUTER JOIN
@@ -650,7 +650,7 @@ We have two types of (OUTER) JOIN:
 
 So whenever you see JOIN it is inner join and LEFT/RIGHT JOIN it is outer join. As a best practice avoid RIGHT JOIN and always use LEFT JOIN instead!
 
-<a name="24"></a>
+<a name="25"></a>
 #### Outer Joins between Multiple Tables
 
 As a best practice avoid RIGHT JOIN and always use LEFT JOIN instead! It is easier to visualize your query.
@@ -670,7 +670,7 @@ As a best practice avoid RIGHT JOIN and always use LEFT JOIN instead! It is easi
         JOIN order_statuses os
             ON o.status = os.order_status_id 
     
-<a name="25"></a>
+<a name="26"></a>
 #### Self Outer Joins
 
         USE sql_hr;
@@ -682,7 +682,7 @@ As a best practice avoid RIGHT JOIN and always use LEFT JOIN instead! It is easi
         LEFT JOIN employees m
             ON e.reports_to = m.employee_id
     
-<a name="26"></a>
+<a name="27"></a>
 #### The Using Clause
 
 We can use USING clause with both INNER and OUTER JOIN.
@@ -743,7 +743,7 @@ Write a query to select payments from the payments table and produce a report in
         JOIN payment_methods pm
             ON p.payment_method = pm.payment_method_id -- here I cannot use USING clause b/c the name of the column in the p and pm tables are NOT the same! 
     
-<a name="27"></a>
+<a name="28"></a>
 #### Natural Joins
 
 In MySQL we also have another simpler way to join two tables, which is easier to code BUT NOT RECOMMENDED! Because it sometimes produces unexpected results. You will be presented here to make sure you understand it if you see it somewhere but don’t use it yourself.
@@ -757,7 +757,7 @@ In MySQL we also have another simpler way to join two tables, which is easier to
 
 With natural JOIN we don’t explicitly specify the column names. The database engine looks at these two tables and join them based on the common columns i.e., columns that have the same names that is the reason this query is shorter to write.
 
-<a name="28"></a>
+<a name="29"></a>
 #### Cross Joins
 
 We use cross JOIN to join every record in the first table with every record in the second table. So that is why we don’t have a condition using ON keyword in the cross JOIN.
@@ -781,7 +781,7 @@ What we have above is called the explicit syntax for CROSS JOIN. We also have im
 
 MOSH advice: he prefers the explicit syntax b/c it is more clear.
 
-<a name="29"></a>
+<a name="30"></a>
 #### Unions
 
 So far we learned that how to join columns from multiple tables. But in SQL we can also JOIN rows from multiple tables, which is extremely powerful.
@@ -857,10 +857,10 @@ My solution:
         WHERE points < 2000
         ORDER BY first_name 
 
-<a name="30"></a>
+<a name="31"></a>
 ### Inserting, Updating, and Deleting Data
 
-<a name="31"></a>
+<a name="32"></a>
 #### Column attributes
 
 In MySQL workbench, I can open a table in a design mode through clicking on the tool sign beside table name and learn about column attributes. But in Pandas, I can get the column attributes using the following function:
@@ -879,7 +879,7 @@ In MySQL workbench, I can open a table in a design mode through clicking on the 
             df = pd.read_sql(query, con)
             return df
 
-<a name="32"></a>
+<a name="33"></a>
 #### VARCHAR vs. CHAR
 
 VARCHAR and CHAR are both SQL data types used to store character strings, but they have some differences in terms of their storage and usage.
@@ -902,7 +902,7 @@ SQL code:
         
 In this example, the postal column is defined as a CHAR column with a fixed length of 50 characters, while the email column is defined as a VARCHAR column with a maximum length of 100 characters.
 
-<a name="33"></a>
+<a name="34"></a>
 #### Inserting a single row into a table
 
         USE sql_store;
@@ -969,7 +969,7 @@ To achieve the same using Pandas, I need:
         
         con.commit()
 
-<a name="34"></a>
+<a name="35"></a>
 #### Multiline string
 
 The """ at the beginning and end of the query is called a multiline string, or a triple-quoted string. It is a Python syntax feature that allows you to define a string that spans multiple lines of code.
@@ -986,7 +986,7 @@ example:
         
                     """, con)
             
-<a name="35"></a>
+<a name="36"></a>
 #### Inserting Multiple Rows
 
 We just need to supply different rows’ values in separate parenthesis in front of VALUES like
@@ -997,7 +997,7 @@ We just need to supply different rows’ values in separate parenthesis in front
             (‘shipper2’),
             (‘shipper3’) 
     
-<a name="36"></a>
+<a name="37"></a>
 #### Inserting Hierarchical rows
 
 So far we learned how to enter data into a single table. Here we will learn how to insert data into multiple tables.
@@ -1037,7 +1037,7 @@ I needed to separate the two INSERT queries like in the following otherwise I go
         
         con.commit()
 
-<a name="37"></a>
+<a name="38"></a>
 #### Creating a Copy of a Table
 
 We will learn how to copy data from one table to another.
@@ -1102,7 +1102,7 @@ Note:
 
 Because the columns invoice_date, payment_date and due_date only exist in invoices table we don’t need to prefix their names in the SELECT statement but MOSH prefers to do so to make his query more clear.
 
-<a name="38"></a>
+<a name="39"></a>
 #### Updating a Single Row
 
 We use UPDATE statement to update one or more records in a table, which table? the one in front of it! In the SET clause we specify the new value for one or more columns (we use a comma to add more columns) then we use WHERE to identify the condition to get the record we would like to update:
@@ -1114,7 +1114,7 @@ We use UPDATE statement to update one or more records in a table, which table? t
             payment_date = due_date 
         WHERE invoice_id = 3 
         
-<a name="39"></a>
+<a name="40"></a>
 #### Updating Multiple Rows
 
 This is exactly the same as updating a single row, as above, but we need a more general condition in the WHERE clause:
@@ -1142,7 +1142,7 @@ Exercise:
             Points = points + 50
         WHERE birth_date < ‘1990-01-01’ -- anyone born before 1990 
                 
-<a name="40"></a>
+<a name="41"></a>
 #### Using Subqueries in Updates
 
 Running the following query, what if we don’t have the client_id and we only have the name of the client?
@@ -1206,7 +1206,7 @@ Exercise:
                         FROM customers
                         WHERE points > 3000)
                         
-<a name="41"></a>
+<a name="42"></a>
 #### Deleting rows
 
 If we don’t provide the optional WHERE clause here all the data in the table will be deleted, which is obviously very dangerous so be very careful:
@@ -1222,12 +1222,12 @@ Also, we can use subqueries in the WHERE clause:
                 FROM clients
                 WHERE name = ‘Myworks’)
         
-<a name="42"></a>
+<a name="43"></a>
 ### Summarizing Data
 
 We will learn how to write queries that summarize data. This section is extremely important specially if you work with lots of data.
 
-<a name="43"></a>
+<a name="44"></a>
 #### Aggregate functions
 
 These functions take a series of values and aggregate them to produce a single value for example MAX () returns the maximum in a series of values. Like
@@ -1298,7 +1298,7 @@ Point: by default, all these aggregate functions mentioned above take duplicate 
         FROM invoices
         WHERE invoice_date > ‘2019-07-01’
 
-<a name="44"></a>
+<a name="45"></a>
 #### The GROUP BY Clause
 
         USE sql_invoicing;
@@ -1351,7 +1351,7 @@ Exercise:
         GROUP BY date, payment_method
         ORDER BY date 
 
-<a name="45"></a>
+<a name="46"></a>
 #### The HAVING Clause
 
 If we want to filter the results after grouping our rows we have to use HAVING clause and NOT WHERE clause. Like:
@@ -1401,7 +1401,7 @@ Solution:
 
 As a rule of thumb when we have an aggregate function in the SELECT statement and we want to group our data we should group by all the columns in the SELECT clause.
 
-<a name="46"></a>
+<a name="47"></a>
 #### The ROLLUP Operator
 
 Only available in MySQL (and not part of standard SQL language, so I won't be able to execute it in SQL server or oracle), which summarizes our entire results set with one extra row. The ROLLUP operator only applies to the columns that aggregate values.
@@ -1468,10 +1468,10 @@ When we use a ROLLUP operator we cannot use a column alias in the GROUP BY claus
 
         GROUP BY payment_method WITH ROLLUP
 
-<a name="47"></a>
+<a name="48"></a>
 ### Writing a complex query
 
-<a name="48"></a>
+<a name="49"></a>
 #### Subqueries
 
         con = connector('sql_store')
@@ -1488,7 +1488,7 @@ When we use a ROLLUP operator we cannot use a column alias in the GROUP BY claus
         0	2	Pork - Bacon,back Peameal	49	4.65
         1	4	Brocolinni - Gaylan, Chinese	90	4.53
 
-<a name="49"></a>
+<a name="50"></a>
 #### Subqueries vs. JOINs
 
 We can achieve the same results using either subquery or JOIN:
@@ -1522,7 +1522,7 @@ Using subquery:
 
 In this particular example using subqueries makes our query more readable, which is not always true, and sometimes using subqueries makes queries complicated and it is better to go with JOIN! So always pay great attention to the readability of your code.
 
-<a name="50"></a>
+<a name="51"></a>
 #### ALL
 
 solution using ALL:
@@ -1571,7 +1571,7 @@ Both queries above (the one using MAX() and the one using ALL) are readable, so 
 
 Sometimes our subquery returns a single value, sometimes it returns a list, sometimes returns a table.
 
-<a name="51"></a>
+<a name="52"></a>
 #### ANY or SOME (they are equivalent
 
         pd.read_sql("""
@@ -1612,7 +1612,7 @@ another way to write the above query:
 
 (= ANY) is equivalent to (IN) (choose what you prefer, it is up to you)
 
-<a name="52"></a>
+<a name="53"></a>
 #### Correlated Subqueries
 
 In correlated subqueries, we have a correlation with the outer query, like we are referencing the alias from the outer query.
@@ -1640,7 +1640,7 @@ In correlated subqueries, we have a correlation with the outer query, like we ar
         9	98374	Estrellita	Daleman	Staff Accountant IV	70187	37270	5
         10	115357	Ivy	Fearey	Structural Engineer	92710	37270	5
 
-<a name="53"></a>
+<a name="54"></a>
 #### EXISTS
 
 Takeaway:
@@ -1662,7 +1662,7 @@ So if the subquery we write after the IN operator produces a large result set, i
         product_id	name	quantity_in_stock	unit_price
         0	7	Sweet Pea Sprouts	98	3.29
 
-<a name="54"></a>
+<a name="55"></a>
 #### Subqueries in the SELECT clause
 
 So far we only used subqueries in the WHERE clause of a SELECT clause, we can also use subqueries in the SELECT clase and also FROM clause.
@@ -1734,7 +1734,7 @@ above query is repetitive and better idea is as follows
         15	18	180.17	152.388235	27.781765
         16	19	134.47	152.388235	-17.918235
 
-<a name="55"></a>
+<a name="56"></a>
 #### Subqueries in the FROM clause
 
 Whenever we use a subquery in a FROM clause we HAVE to give the subquery an alias whether ot not we use that alias. This is required.
@@ -1765,10 +1765,10 @@ Takeaway: You can write a subquery in the FROM clause of the SELECT statement, b
         2	3	Yadel	705.90	152.388235	553.511765
         3	5	Topiclounge	980.02	152.388235	827.631765
    
-<a name="56"></a>
+<a name="57"></a>
 ### Essential MySQL Functions 
 
-<a name="57"></a>
+<a name="58"></a>
 #### NUMERIC Function
 
         ROUND
@@ -1780,7 +1780,7 @@ Takeaway: You can write a subquery in the FROM clause of the SELECT statement, b
         
 https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html
 
-<a name="58"></a>
+<a name="59"></a>
 #### STRING Functions
 
         LENGTH
@@ -1798,7 +1798,7 @@ https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html
 
 https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
 
-<a name="59"></a>
+<a name="60"></a>
 #### DATE Functions
 
         NOW
@@ -1814,7 +1814,7 @@ https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
         MONTHNAME
         EXTRACT
 
-<a name="60"></a>
+<a name="61"></a>
 #### FORMATTING Date and Times
 
         DATE_FORMAT
@@ -1823,7 +1823,7 @@ https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
 
         TIME_FORMAT
 
-<a name="61"></a>
+<a name="62"></a>
 #### CALCULATING Dates and Times
 
         DATE_ADD
@@ -1831,7 +1831,7 @@ https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
         DATEDIFF
         TIME_TO_SEC
 
-<a name="62"></a>
+<a name="63"></a>
 #### IFNULL and COALESCE Functions
 
         pd.read_sql("""
@@ -1868,7 +1868,7 @@ https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
         8	9	1
         9	10	2
 
-<a name="63"></a>
+<a name="64"></a>
 #### IF Function
 
         pd.read_sql("""
@@ -1921,7 +1921,7 @@ Using IF function I achieved the same results as above but with much shorted que
         8	9	10	Archived
         9	10	6	Archived
         
-<a name="64"></a>
+<a name="65"></a>
 #### CASE Operator
         pd.read_sql("""
         SELECT 
@@ -1947,10 +1947,10 @@ Using IF function I achieved the same results as above but with much shorted que
         8	Romola Rumgay	1486	Bronze
         9	Levy Mynett	796	Bronze
 
-<a name="65"></a>
+<a name="66"></a>
 ### VIEWS
 
-<a name="66"></a>
+<a name="67"></a>
 #### Creating Views
 
 Sometimes our queries get complex specially when we have multiple JOINs and subqueries, this is where VIEWS come to rescuse, we can save these queries or subqueries in a view, then we can reuse those views later with no need to rewrite those queries or subqueries again. We can create view using:
@@ -2026,7 +2026,7 @@ So VIEWS are extremely powerful and can greatly simplify our future queries.
 
 VIEWS behaves like virtual tables BUT remember VIEWS don't store data, our data is actually stored in tables, a view just provides a view to the underlying tables, that is why we call it view.
 
-<a name="67"></a>
+<a name="68"></a>
 #### Altering or Dropping VIEWS
 
 If we want to modify our VIEW after we already created it, we have 2 options:
@@ -2071,7 +2071,7 @@ What if the query in the view is gone and you don't have access to it anymore?
 
 The ideal way is to save your view as a sql file and then put it under the source control, very common and great practice is to check these files into your Git repository and then share that repository with other people allowing others to recreate the database on their own machines.
 
-<a name="68"></a>
+<a name="69"></a>
 #### Updating VIEWS
 
 So far we used our views in SELECT statements, but also we can use them in INSERT, UPDATE, and DELETE statements, BUT ONLY IF the view is updatable meaning not having any of the followings in it:
@@ -2134,7 +2134,7 @@ The INSERT is a bit tricky because it only works if the view has all the require
 
 Most of the time we update data through our tables but in some cases we may not have direct permission to the table for securing reasons so our only option is to modify data through a view, in these cases we use views to delete, update, or insert data assuming our view is updatable.
 
-<a name="69"></a>
+<a name="70"></a>
 #### The WITH CHECK OPTION clause
 
 The default behavior of view is that when you UPDATE data through a view some of the rows may disappear. There are times that you want to prevent this: you don't want the UPDATE statement to exclude a row from the VIEW, you can do this with WITH CHECK OPTION at the end of your VIEW, like:
@@ -2177,7 +2177,7 @@ So now if I try to update a view which results in exclusion of any row I get an 
         cursor.close()
         OperationalError: (1369, "CHECK OPTION failed 'sql_invoicing.invoices_with_balance'")
 
-<a name="70"></a>
+<a name="71"></a>
 #### Other benefits of VIEWS
 
 VIEWS's benefits:
@@ -2186,10 +2186,10 @@ VIEWS's benefits:
 + Reduce the impact of changes in the database design
 + Restrict access to the data in the underlying tables
 
-<a name="71"></a>
+<a name="72"></a>
 ### Stored Procedures and Functions
 
-<a name="72"></a>
+<a name="73"></a>
 #### What Stored Procedures are
 
 Where you are building an application that has a database, whare you are going to write these SQL statements?
@@ -2204,7 +2204,7 @@ Stored procedures benefits:
 + Faster execution
 + Data security
 
-<a name="73"></a>
+<a name="74"></a>
 #### Creating a Stored Procedure
 
 We can create a stored procedure like:
@@ -2273,7 +2273,7 @@ In my case in Python:
         """, con)
 
     
-<a name="74"></a>
+<a name="75"></a>
 #### Dropping Stored Procedures
 
 Here is my function to drop the stored procedure:
@@ -2293,7 +2293,7 @@ Here is my function to drop the stored procedure:
 
 Note: I added IF EXISTS to prevent raising errors in case there is no stored procedure with the name we specified to be dropped.
 
-<a name="75"></a>
+<a name="76"></a>
 #### Parameters
 
 We typically use a parameter to pass a value to the stored procedure.
@@ -2326,7 +2326,7 @@ We typically use a parameter to pass a value to the stored procedure.
         0	3	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
         
 
-<a name="76"></a>
+<a name="77"></a>
 #### Parameters with Default Value
         
         Here is the code:
@@ -2437,7 +2437,7 @@ another example:
         4	5	Topiclounge	0863 Farmco Road	Portland	OR	971-888-9129
 
 
-<a name="77"></a>
+<a name="78"></a>
 #### Parameter Validation
 
 So far we saw the procedures to SELECT data but we also may use procedures to INSERT, UPDATE, or DELETE data.
@@ -2587,7 +2587,7 @@ SET MESSAGE_TEXT is optional but a good practice
 
 So it is a good practice to check the parameters of a stored procedure before before making any changes to the data, but too much of a good thing is a bad thing so don't write too much validation logics, keep it to what is absolutely essential.
 
-<a name="78"></a>
+<a name="79"></a>
 #### Output Parameters
 
 We can also use parameters to return values to the calling programs.
@@ -2639,7 +2639,7 @@ When calling the stored procedure, I also need to pass these output variables as
 
 Using output parameters requires a bit more effort to read data and I would suggest avoid them unless you have a valid reason to use them.
 
-<a name="79"></a>
+<a name="80"></a>
 #### Variables
 
 User or session variables: We quite often use them when defining a stored procedure that has output parameters like in the previous point. They are the variables that will be in memory during the entire client session, when the client disconnects from MySQL these are freed up. We define them using SET statement and we prefix them using an @ like
@@ -2677,10 +2677,8 @@ Local variables; they are defined inside the stored procedure or function. These
         risk_factor
         0	777.75
 
-
-<a name="80"></a>
+<a name="81"></a>
 #### Functions
-
 
 + Functions are pretty similar to the stored procedures BUT they can only return a single value. So functions unlike stored procedures cannot return results set with multiple rows and columns.
 + One of the main differences between functions and stored procedures is the RETURNS statement where we specify the type of value the functions returns which could be any data type in MySQL.
@@ -2739,7 +2737,7 @@ We can use this function just like the built-in functions in the SELECT statemen
 
 Similar to views and stored procedures it is a good practice to save your functions in SQL files and put them under the source control.
 
-<a name="81"></a>
+<a name="82"></a>
 #### Other Conventions
 
 
