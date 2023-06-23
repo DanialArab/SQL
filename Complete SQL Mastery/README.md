@@ -2658,11 +2658,11 @@ we can have multiple attributes in a function.
             SET risk_factor = invoices_total / invoices_count * 5;
         
             RETURN IFNULL(risk_factor, 0); 
-        END 
-        """)
-        
-        con.commit()
-        cursor.close()
+            END 
+            """)
+            
+            con.commit()
+            cursor.close()
       
 We can use this function just like the built-in functions in the SELECT statements:
 
