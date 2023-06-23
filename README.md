@@ -4,14 +4,18 @@ This repo documents my solutions to **Leetcode - Database questions using SQL**.
 
 
 1. [Leetcode - Database Questions](#1)
-    1. [Details of the ](#2)
+    1. [Leetcode Questions](#2)
     2. [Workflow to generate the Leetcode databases in the MySQL server](#3)
 3. [Complete SQL Mastery](#4)
 
 
 <a name="1"></a>
-## Leetcode - Database Questions
+## Leetcode Questions
 
+
+|**Index**|**Question ID** | **Question title**|  **Difficulty level**|
+| -- | --|  -- | -- |
+|1 | 1757| Recyclable and Low Fat Products | Easy |
 
 
 <a name="3"></a>
