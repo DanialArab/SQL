@@ -67,7 +67,14 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     7. [IF Function](#63)
     8. [CASE Operator](#64)
 8. [VIEWS](#65)
-    1. [](#66)
+    1. [Creating Views](#66)
+    2. [Altering or Dropping VIEWS](#67)
+    3. [Updating VIEWS](#68)
+    4. [The WITH CHECK OPTION clause](#69)
+    5. [ Other benefits of VIEWS](#70)
+9. [Stored Procedures and Functions](#71)
+    1. [](#72)
+    
 
    
 <a name="1"></a>
