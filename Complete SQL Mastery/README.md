@@ -15,10 +15,10 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
 11. [Greedy](#10)
 
 <a name="1"></a>
-### 1: Introduction 
+### Introduction 
 
 <a name="2"></a>
-#### 1. What is a Database? 
+#### What is a Database? 
 
 A database is a collection of data stored in a format that can be easily accessed. In order to manage our databases we use a software called database management system (DBMS). DBMS are categorized as two broad categories:
 
