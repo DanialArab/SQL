@@ -1885,3 +1885,31 @@ Using IF function I achieved the same results as above but with much shorted que
 
 <a name="66"></a>
 #### Creating Views
+
+here 
+
+<a name="67"></a>
+#### Altering or Dropping VIEWS
+
+<a name="68"></a>
+#### Updating VIEWS
+
+<a name="69"></a>
+#### The WITH CHECK OPTION clause
+
+<a name="70"></a>
+#### Other benefits of VIEWS
+
+<a name="71"></a>
+### Stored Procedures and Functions
+
+
+<a name="66"></a>
+#### 
+
+<a name="66"></a>
+#### 
+
+<a name="66"></a>
+#### 
+
