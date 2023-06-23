@@ -3,7 +3,7 @@
 Here is the summary of my notes from the course <a href="https://codewithmosh.com/p/complete-sql-mastery">Complete SQL Mastery<\a>. The structure of my notes is as follows:
 
 1. [Introduction](#1)
-  1. [What is a Database?](#2)
+    1. [What is a Database?](#2)
 3. [Array](#2)
 4. [Matrix](#3)
 5. [Singly Linked List ](#4)
