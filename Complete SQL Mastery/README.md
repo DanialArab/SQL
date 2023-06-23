@@ -84,3 +84,38 @@ Skills helping an individual stand out:
 + Securing databases
 
 
+
+<a name="6"></a>
+### Retrieving Data From a Single Table 
+
+<a name="7"></a>
+#### The SELECT statement
+
+<a name="8"></a>
+#### The AND, OR, and NOT operators
+
+<a name="9"></a>
+#### The IN operator in SQL
+
+<a name="10"></a>
+#### The BETWEEN operator in SQL
+
+<a name="11"></a>
+#### The LIKE operator
+
+<a name="12"></a>
+#### The REGEXP operator
+
+<a name="13"></a>
+#### The IS NULL operator
+
+
+<a name="14"></a>
+#### The ORDER BY clause
+
+<a name="15"></a>
+#### The LIMIT clause
+
+<a name="16"></a>
+### Retrieving Data From Multiple Tables
+
