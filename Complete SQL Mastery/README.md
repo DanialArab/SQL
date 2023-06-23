@@ -232,12 +232,106 @@ There are more special characters in MySQL than listed above but honestly the on
 <a name="13"></a>
 #### The IS NULL operator
 
+How to look for records that miss an attribute? Like if we want to find all the customers that don’t have a phone number and like we want to send an email to them and say please provide phone number. To do so we use IS NULL operator:
 
+        SELECT *
+        FROM customers
+        WHERE phone IS NULL 
+
+Here we also can use NOT operator to get the customers who do have a phone like
+
+        SELECT *
+        FROM customers
+        WHERE phone IS NOT NULL
+        
 <a name="14"></a>
 #### The ORDER BY clause
 
+How to sort data in your SQL queries?
+
+By default the data in our query is sorted by the customer_id. Why is the customer_id column the default sort column?
+
+Because the customer_id column is the primary key column for the table customers. You can figure it out by clicking the tools like button on the right of the table customers name and then see the customer table in the design mode. Here you see that there is a yellow key just before the customer_id meaning this is a primary key column for this table. In relational databased every table should have a primary key column and the values in that column should uniquely identify the records in that table. So that is why in our query the data is sorted by the custiomer_id which is the primary key. To sort the customers by different column:
+
+        SELECT *
+        FROM customers 
+        ORDER BY first_name 
+
+To reverse the order:
+
+        SELECT *
+        FROM customers
+        ORDER BY first_name DESC
+
+We can also sort data by multiple columns for example:
+
+Let’s say we want to first sort customers based on their state and then within each state we want to sort them by their first name:
+
+        SELECT *
+        FROM customers
+        ORDER BY state, first_name 
+
+We can also use a descending argument anywhere like:
+
+        SELECT *
+        FROM customers
+        ORDER BY state, first_name DESC 
+
+The difference between MySQL and other DBMSs is that in MySQL we can sort by any columns whether that column is in the SELECT clause or NOT like:
+
+        SELECT first_name, last_name
+        FROM customers
+        ORDER BY state
+
+Here although I don’t have state column in SELECT clause but I can sort data based on that. But other DBMSs sometimes yell at you when you try to do sorting like this.
+
+We also can sort data by an alias like:
+
+        SELECT first_name, last_name, 10 AS points 
+        FROM customers
+        ORDER BY points, first_name 
+
+AVOID: you can also sort data by columns position like:
+
+        SELECT first_name, last_name
+        FROM customers
+        ORDER BY 1, 2 – these are the orders of the columns in the SELECT clause 
+
+This query sorts data by first_name and then last_name.
+
+BUT avoid this b/c if in the future you have a change in the columns in the SELECT clause like:
+
+        SELECT birth_data, first_name, last_name 
+        FROM customers
+        ORDER BY 1, 2
+
+The data would be sorted differently and generates unexpected results and so avoid sorting by column’s positions INSTEAD ALWAYS SORT BY COLUMNS’NAMES.
+
 <a name="15"></a>
 #### The LIMIT clause
+
+How to limit the number of records from your query? Like if we only want to get the three first customers we use the LIMIT clause:
+
+        SELECT *
+        FROM customers
+        LIMIT 3
+
+We can optionally supply an offset which is useful for situations we want to paginate data. Like:
+
+        SELECT *
+        FROM customers
+        LIMIT 6, 3 
+
+Here 6 is an offset and tells MySQL to skip the first 6 records and then pick three records.
+
+Exercise: get the top three loyal customers, like the ones with highest points
+
+        SELECT *
+        FROM customers
+        ORDER BY points DESC 
+        LIMIT 3 
+
+POINT: Again the order matters! The LIMIT clause should always come at the end.
 
 <a name="16"></a>
 ### Retrieving Data From Multiple Tables
