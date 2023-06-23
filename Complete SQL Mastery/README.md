@@ -4,6 +4,9 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
 
 1. [Introduction](#1)
     1. [What is a Database?](#2)
+    2. [Relational DBMS](#3)
+    3. [Non-relational databases](#4)
+    4. [Course structure](#5)
 3. [Array](#2)
 4. [Matrix](#3)
 5. [Singly Linked List ](#4)
@@ -22,58 +25,59 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
 
 A database is a collection of data stored in a format that can be easily accessed. In order to manage our databases we use a software called database management system (DBMS). DBMS are categorized as two broad categories:
 
-Relational
++ Relational
++ NoSQL
 
-NoSQL
+<a name="3"></a>
+#### Relational DBMS
 
-2. Relational DBMS
+We store data in tables that are linked to each other using relationships, each table stores data about a specific type of object. We use Structured Query Language (SQL) to work with these relational DBMSs. We use SQL to query or modify our data. There are various RDBMS:
 
-We store data in tables that are linked to each other using relationships, each table stores data about the specific type of object. We use Structured Query Language (SQL) to work with these relational DBMS. We use SQL to query or modify our data. There are various RDBMS like:
++ MySQL
++ SQL Server
++ Oracle
++ ...
 
-MySQL
-SQL Server
-Oracle
-...
-All of these flavors are based on the standard specifications of SQL. So what I learn in this course mostly can be applied to any of these RDBMS. In this course we use MySQL, which is the most popular open source database in the world.
+All of these flavors are based on the standard specifications of SQL. So what I learn in this course mostly can be applied to any of these RDBMS. In this course, we use MySQL, which is the most popular open-source database in the world.
 
-3. Non relational databases
+<a name="4"></a>
+#### Non-relational databases
 
-In Non relational databases we don’t have tables or relationships, these databases are very different from relational databases and NoSQL systems don’t understand SQL and they have their own query language.
+In Non-relational databases, we don’t have tables or relationships, these databases are very different from relational databases and NoSQL systems don’t understand SQL and they have their own query language.
 
-4. Course structure
+<a name="5"></a>
+#### Course structure
 
-5. What you will learn:
+Even though we use MySQL in this course, what we will be learning will be applicable at least 90% to other DBMSs. There might be a slight difference in syntax though.
 
-Retrieving data
-Inserting data
-Updating data
-Deleting data
-Even though we use MySQL in this course, what you will be learning will be applicable at least 90% to other DBMSs. There might be a slight difference in syntax though.
+Topics: 
 
-You also learn
++ Retrieving data
++ Inserting data
++ Updating data
++ Deleting data
++ Summarizing data for creating reports
++ Writing complex queries using subqueries
++ Built-in functions
 
-Summarizing data for creating reports
-Writing complex queries using subqueries
-Built-in functions
-As you process you see you are writing the same queries again and again and so you will learn about the followings for storing queries and reusing them later:
+As you process you see you are writing the same queries again and again and so we will learn about the followings for **storing queries and reusing them** later:
 
-Views
-Stored procedures
-These are great for increasing your productivity.
++ Views
++ Stored procedures
 
-Then we move on to advanced topics:
-Triggers
-Events
-Transactions
-Concurrency
-If you want to stand out among the crowds you have to learn about:
+These are great for increasing our productivity.
 
-Designing databases
-Mosh dedicated a complete in-depth section on it.
+Some advanced topics:
 
-Then we look at
++ Triggers
++ Events
++ Transactions
++ Concurrency
 
-Indexing for high performance, indexes are essential when your database grows in size, we can speed up our queries using indexes. If you have billions of records you want to query pretty quick using indexes
-Finally we finish the course by
+Skills helping an individual stand out: 
 
-Securing databases
++ Designing databases
++ Indexing for high performance, indexes are essential when your database grows in size, we can speed up our queries using indexes. If you have billions of records you want to query pretty quickly using indexes
++ Securing databases
+
+
