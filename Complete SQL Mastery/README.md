@@ -1694,10 +1694,16 @@ Takeaway: You can write a subquery in the FROM clause of the SELECT statement, b
 <a name="56"></a>
 ### Essential MySQL Functions 
 
-HERE
-
 <a name="57"></a>
 #### NUMERIC Function
+
+ROUND
+TRUNCATE
+CEILING
+FLOOR
+ABS
+RAND
+https://dev.mysql.com/doc/refman/8.0/en/numeric-functions.html
 
 <a name="58"></a>
 #### STRING Functions
