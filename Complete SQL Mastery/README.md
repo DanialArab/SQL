@@ -943,19 +943,187 @@ I needed to separate the two INSERT queries like in the following otherwise I go
 <a name="37"></a>
 #### Creating a Copy of a Table
 
-HERE
+We will learn how to copy data from one table to another.
+
+Let’s say we want to make an exact copy of table orders, we can use the following:
+
+CREATE TABLE name_of_the_new_table AS then we use SELECT statement to get everything from orders table:
+
+        USE sql_store;
+        CREATE TABLE orders_archived AS
+        SELECT *
+        FROM orders 
+
+This way we can create an exact copy of orders table, but if we open the orders_archived table in design mode we see in this table we don’t have a primary key and auto increment for this table. So when creating a table using this technique MySQL ignores these attributes and that means if we want explicitly insert a record into the orders_archived we have to supply a value for order_id as well (order_id is the primary key and also marked as auto increment in the orders table).
+
+In the above query we refer to the SELECT statement as a subquery. A subquery is a SELECT statement that is part of another SQL statement. We can also use a subquery in an INSERT statement and that is a very powerful technique like:
+
+Side note: To delete all the data in a table we can right click on the table name in the schemas and then click Truncate Table, this deletes all the data in the table.
+
+I can achieve this using Python as follows:
+
+        con = connector('sql_store')
+        
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        
+        TRUNCATE TABLE orders_archived
+        
+        """)
+        
+        con.commit()
+        
+        con.close()
+
+How to copy a subset of a table into a new table? using a subquery in an INSERT statement, like in the following:
+
+Here we want to copy all the orders before 2019 into the table orders_archived: We can use the SELECT statement as a subquery to the INSERT statement:
+
+        USE sql_store;
+        INSERT INTO orders_archived 
+        SELECT *
+        FROM orders
+        WHERE order_date <  ‘2019-01-01’
+        Exercise:
+        
+        USE sql_invoicing;
+        CREATE TABLE invoice_archived AS 
+        SELECT 
+            i.invoice_id,
+            i.number,
+            c.name AS client,
+            i.invoice_total, 
+            i.payment_total,
+            i.invoice_date,
+            i.payment_date,
+            i.due_date
+        FROM clients c
+        JOIN invoices i USING (client_id) 
+        WHERE payment_date IS NOT NULL 
+Note:
+
+Because the columns invoice_date, payment_date and due_date only exist in invoices table we don’t need to prefix their names in the SELECT statement but MOSH prefers to do so to make his query more clear.
 
 <a name="38"></a>
 #### Updating a Single Row
 
+We use UPDATE statement to update one or more records in a table, which table? the one in front of it! In the SET clause we specify the new value for one or more columns (we use a comma to add more columns) then we use WHERE to identify the condition to get the record we would like to update:
+
+        USE sql_invoicing;
+        UPDATE invoices 
+        SET
+            payment_total = 0.5 * total_invoice,
+            payment_date = due_date 
+        WHERE invoice_id = 3 
+        
 <a name="39"></a>
 #### Updating Multiple Rows
 
+This is exactly the same as updating a single row, as above, but we need a more general condition in the WHERE clause:
+
+        USE sql_invoicing;
+        UPDATE invoices
+        SET
+            payment_total = 0.5 * total_invoice,
+            payment_date = due_date 
+        WHERE client_id = 3 -- all the operators you learned to use in WHERE clause also apply here like WHERE client_id IN (3, 4) 
+
+The WHERE clause above is optional and if you want to update all the records in a table you can simply leave the WHERE clause out.
+
+But if we run the above query we get an error, this is the case because MySQL Workbench yells at us because Workbench allows us to update only a single record (this is specific to Workbench and if I use other clients for MySQL I may not get this error, also I connected to a MySQL Database with Python (Pandas) and executing pure SQL Queries I did not get this issue) to fix this we go to
+
+Edit > preferences > SQL editor > uncheck safe updates …
+
+Now we close and reconnect to the database and now it works.
+
+Exercise:
+
+        USE sql_store,
+        UPDATE customers
+        SET
+            Points = points + 50
+        WHERE birth_date < ‘1990-01-01’ -- anyone born before 1990 
+                
 <a name="40"></a>
 #### Using Subqueries in Updates
 
+Running the following query, what if we don’t have the client_id and we only have the name of the client?
+
+        USE sql_invoicing;
+        UPDATE invoices
+        SET
+            payment_total = 0.5 * total_invoice,
+            payment_date = due_date 
+        WHERE client_id = 3
+
+For example, imagine you have an application and the user types in the client name in that application so first we should find the client_id and then use that ID to update all their invoices.
+
+To do so we use a subquery to get the client_id based on the name rather than hard coding the client_id like:
+
+        USE sql_invoicing;
+        UPDATE invoices
+        SET
+            payment_total = 0.5 * total_invoice,
+            payment_date = due_date 
+        WHERE client_id = 
+            (SELECT client_id
+            FROM clients
+            WHERE name = ‘Myworks’)
+    
+This will update all the invoices for this client.
+
+Pay attention we need to put the subquery in the parenthesis.
+
+What if our subquery in the parenthesis above returns multiple clients? When this is the case we need to use IN instead of the equal sign in the WHERE clause:
+
+        USE sql_invoicing;
+        UPDATE invoices
+        SET
+            payment_total = 0.5 * total_invoice,
+            payment_date = due_date 
+        WHERE client_id IN
+            (SELECT client_id
+            FROM clients
+            WHERE state IN (‘CA’, ‘NY’))
+    
+As a best practice before executing your update statement run your subquery, to see what records you are going to update so you don’t accidentally update the records that shouldn't be updated. In the above, we have a subquery but even if we did not have a subquery we could still query the records that we want to update like:
+
+UPDATE invoices SET payment_total = 0.5 * total_invoice, payment_date = due_date WHERE payment_date IS NULL
+
+before running the above query, I would run the following:
+
+        SELECT *
+        From INVOICES 
+        WHERE payment_date IS NULL 
+
+Then when we are confident that we will be updating the right records as we run our query to update them.
+
+Exercise:
+
+        USE sql_store;
+        UPDATE orders
+        SET comments = ‘Golden customer’
+        WHERE customer_id IN 
+                        (SELECT customer_id
+                        FROM customers
+                        WHERE points > 3000)
+                        
 <a name="41"></a>
 #### Deleting rows
 
+If we don’t provide the optional WHERE clause here all the data in the table will be deleted, which is obviously very dangerous so be very careful:
+
+        DELETE FROM invoices
+        WHERE invoice_id = 1 
+
+Also, we can use subqueries in the WHERE clause:
+        
+        DELETE FROM invoices
+        WHERE client_id = (
+                SELECT client_id
+                FROM clients
+                WHERE name = ‘Myworks’)
+        
 <a name="42"></a>
 ### Summarizing Data
