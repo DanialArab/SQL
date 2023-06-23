@@ -1886,19 +1886,238 @@ Using IF function I achieved the same results as above but with much shorted que
 <a name="66"></a>
 #### Creating Views
 
-here 
+Sometimes our queries get complex specially when we have multiple JOINs and subqueries, this is where VIEWS come to rescuse, we can save these queries or subqueries in a view, then we can reuse those views later with no need to rewrite those queries or subqueries again. We can create view using:
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        CREATE VIEW sales_by_client AS
+        SELECT 
+            c.client_id,
+            c.name,
+            SUM(invoice_total) AS total_sales
+        FROM clients c
+        JOIN invoices USING (client_id)
+        GROUP BY client_id, name
+        
+        """)
+        
+        con.commit()
+        cursor.close()
+        
+I can reuse this view and select data from it just like a table like:
+
+        pd.read_sql("""
+        SELECT *
+        FROM sales_by_client
+        """, con)
+        client_id	name	total_sales
+        0	2	Myworks	101.79
+        1	5	Topiclounge	980.02
+        2	3	Yadel	705.90
+        3	1	Vinte	802.89
+
+we can use it just like a table like doing ORDER BY:
+
+        pd.read_sql("""
+        SELECT *
+        FROM sales_by_client
+        ORDER BY total_sales DESC
+        """, con)
+        client_id	name	total_sales
+        0	5	Topiclounge	980.02
+        1	1	Vinte	802.89
+        2	3	Yadel	705.90
+        3	2	Myworks	101.79
+
+or filtering:
+
+        pd.read_sql("""
+        SELECT *
+        FROM sales_by_client
+        WHERE total_sales > 500
+        """, con)
+        client_id	name	total_sales
+        0	5	Topiclounge	980.02
+        1	3	Yadel	705.90
+        2	1	Vinte	802.89
+
+or JOIN it with any other tables we have:
+
+        pd.read_sql("""
+        SELECT *
+        FROM sales_by_client
+        JOIN clients USING (client_id)
+        """, con)
+        client_id	name	total_sales	name	address	city	state	phone
+        0	1	Vinte	802.89	Vinte	3 Nevada Parkway	Syracuse	NY	315-252-7305
+        1	2	Myworks	101.79	Myworks	34267 Glendale Parkway	Huntington	WV	304-659-1170
+        2	3	Yadel	705.90	Yadel	096 Pawling Parkway	San Francisco	CA	415-144-6037
+        3	5	Topiclounge	980.02	Topiclounge	0863 Farmco Road	Portland	OR	971-888-9129
+
+So VIEWS are extremely powerful and can greatly simplify our future queries.
+
+VIEWS behaves like virtual tables BUT remember VIEWS don't store data, our data is actually stored in tables, a view just provides a view to the underlying tables, that is why we call it view.
 
 <a name="67"></a>
 #### Altering or Dropping VIEWS
 
+If we want to modify our VIEW after we already created it, we have 2 options:
+
+1- Drop it then recreate it like:
+
+        def delete_view (database, view_name):
+        
+            con = connector(database)
+            cursor = con.cursor()
+        
+            cursor.execute(f"DROP VIEW {view_name}")
+        
+            # Commit the transaction
+            con.commit()
+        
+            # Close the connection
+            con.close()
+            
+2- using CREATE OR REPLACE keyword (this method is a preferred way)
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        
+        CREATE OR REPLACE VIEW clients_balance AS
+        SELECT 
+            c.client_id,
+            c.name,
+            SUM(invoice_total - payment_total) AS balance 
+        FROM clients c
+        JOIN invoices i
+            USING (client_id)
+        GROUP BY client_id, name 
+        ORDER BY balance DESC
+        """)
+
+        con.commit()
+        cursor.close()
+
+What if the query in the view is gone and you don't have access to it anymore?
+
+The ideal way is to save your view as a sql file and then put it under the source control, very common and great practice is to check these files into your Git repository and then share that repository with other people allowing others to recreate the database on their own machines.
+
 <a name="68"></a>
 #### Updating VIEWS
+
+So far we used our views in SELECT statements, but also we can use them in INSERT, UPDATE, and DELETE statements, BUT ONLY IF the view is updatable meaning not having any of the followings in it:
+
+        DISTINCT
+        Aggregare Functions (MIN, MAX, SUM ...)
+        GROUP BY/HAVING
+        UNION
+
+Here are the examples for DELETING and UPDATING an updatable view:
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        CREATE OR REPLACE VIEW invoices_with_balance AS
+        SELECT 
+            invoice_id,
+            number,
+            client_id,
+            invoice_total,
+            payment_total,
+            invoice_total - payment_total AS balance, 
+            invoice_date,
+            due_date,
+            payment_date
+        FROM invoices
+        WHERE (invoice_total - payment_total) > 0
+        """)
+        
+        con.commit()
+        cursor.close()
+
+Since in my view above i don't have DISTINCT keyword, or using any aggregate functions or groupby or union so my view is UPDATABLE!
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        DELETE FROM invoices_with_balance
+        WHERE invoice_id = 1
+        
+        """)
+        
+        con.commit()
+        cursor.close()
+
+or i can UPDATE it:
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        UPDATE invoices_with_balance
+        SET due_date = DATE_ADD(due_date, INTERVAL 2 DAY)
+        WHERE invoice_id = 2
+        """)
+        
+        con.commit()
+        cursor.close()
+
+The INSERT is a bit tricky because it only works if the view has all the required columns in the underlying table.
+
+Most of the time we update data through our tables but in some cases we may not have direct permission to the table for securing reasons so our only option is to modify data through a view, in these cases we use views to delete, update, or insert data assuming our view is updatable.
 
 <a name="69"></a>
 #### The WITH CHECK OPTION clause
 
+The default behavior of view is that when you UPDATE data through a view some of the rows may disappear. There are times that you want to prevent this: you don't want the UPDATE statement to exclude a row from the VIEW, you can do this with WITH CHECK OPTION at the end of your VIEW, like:
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        CREATE OR REPLACE VIEW invoices_with_balance AS
+        SELECT 
+            invoice_id,
+            number,
+            client_id,
+            invoice_total,
+            payment_total,
+            invoice_total - payment_total AS balance, 
+            invoice_date,
+            due_date,
+            payment_date
+        FROM invoices
+        WHERE (invoice_total - payment_total) > 0
+        WITH CHECK OPTION
+        
+        """)
+
+        con.commit()
+        cursor.close()
+
+So now if I try to update a view which results in exclusion of any row I get an error like:
+
+        cursor = con.cursor()
+        
+        cursor.execute("""
+        UPDATE invoices_with_balance
+        SET payment_total = invoice_total
+        WHERE invoice_id = 3
+        
+        """)
+        
+        con.commit()
+        cursor.close()
+        OperationalError: (1369, "CHECK OPTION failed 'sql_invoicing.invoices_with_balance'")
+
 <a name="70"></a>
 #### Other benefits of VIEWS
+
+VIEWS's benefits:
+
++ Simply our queries
++ Reduce the impact of changes in the database design
++ Restrict access to the data in the underlying tables
 
 <a name="71"></a>
 ### Stored Procedures and Functions
