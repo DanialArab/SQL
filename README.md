@@ -15,6 +15,7 @@ This repo documents my solutions to **Leetcode - Database questions using SQL**.
 <a name="2"></a>
 ### Leetcode Questions
 
+The following table details the Leetcode database question I solved so far:
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
