@@ -7,6 +7,7 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     2. [Relational DBMS](#3)
     3. [Non-relational databases](#4)
     4. [Course structure](#5)
+    5. [Connecting to a MySQL Database with Python (Pandas) and Executing pure SQL Queries](#6)
 2. [Retrieving Data From a Single Table](#6)
     1. [The SELECT statement](#7)
     2. [The AND, OR, and NOT operators](8#)
@@ -151,6 +152,61 @@ Skills helping an individual stand out:
 + Indexing for high performance, indexes are essential when your database grows in size, we can speed up our queries using indexes. If you have billions of records you want to query pretty quickly using indexes
 + Securing databases
 
+<a name="6"></a>
+#### Connecting to a MySQL Database with Python (Pandas) and Executing pure SQL Queries
+
+In order to run pure SQL code in python, I followed the following procedure (this way allows me to push all my codes, which were run in jupyter notebook, into my GitHub repo rather than running SQL queries in my local using MySQL Workbench as a database management tool to interact with MySQL):
+
+Create a connection to my MySQL server:
+
+        def connector (database, password=password, host='localhost', 
+                         user='root', charset='utf8mb4',):
+        
+              con = pymysql.connect(
+                                  host=host,
+                                  user=user,
+                                  password=password,
+                                  charset=charset, 
+                                  database=database)
+        
+              return con
+        
+          con = connector (database) 
+
+Execute the SQL query
+
+          cursor = con.cursor()
+          cursor.execute("""
+        
+          SELECT *
+          FROM orders
+        
+          """)
+          con.commit()
+        
+          cursor.close()
+          con.close()
+
+          results = cursor.fetchall()
+        
+          df = pd.DataFrame(results, columns=[desc[0] for desc in cursor.description])
+
+some notes on cursor object:
+
+In Python, we can interact with MySQL databases using the MySQL Connector/Python module, which provides a Cursor object for executing SQL queries.
+
+A cursor is an object that allows me to execute SQL statements and retrieve data from a MySQL database. It acts as a pointer to a specific row or set of rows within a result set. The Cursor object is created by calling the cursor() method on a MySQL connection object.
+
+Once the cursor object is created, I can execute SQL queries using the execute() method. The results of the query can be retrieved using the fetchall() method.
+
+It's important to note that after executing a SQL query, you need to either fetch all the rows returned by the query or use one of the other fetch methods (fetchone(), fetchmany()) to retrieve specific rows. After you're done working with the cursor object, you should close it using the close() method to free up system resources.
+
+note on pd.read_sql vs. using cursor object:
+
+If I just need to execute a simple SELECT statement and retrieve the results as a Pandas DataFrame, then using the pd.read_sql() function is a more convenient option than using a cursor object.
+
+But if I need to execute more complex SQL queries that involve multiple statements, transaction management, or other advanced features, then I may need to use a cursor object instead of pd.read_sql().
+  
 <a name="6"></a>
 ### Retrieving Data From a Single Table 
 
