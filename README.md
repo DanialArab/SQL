@@ -1,16 +1,22 @@
 # Structured Query Language 
 
-This repo documents my solutions to **Leetcode - Database questions using SQL**. The Leetcode database was first needed to be regenerated in my MySQL server using the SQL Schema presented in the Leetcode questions. This is required to be able to make a query in the Jupyter Notebook using my MySQL credentials. All of my solutions are presented in Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode_Database_Questions.ipynb">Leetcode_Database_Questions</a>**.
+## Leetcode Problem Categories
+
+1. [Leetcode - Database Questions](#1)
+    1. [Details of the ](#2)
+    2. [Workflow to generate the Leetcode databases in the MySQL server](#3)
+3. [Complete SQL Mastery](#4)
+
+
+<a name="1"></a>
+## Leetcode - Database Questions
+
+This repo documents my solutions to **Leetcode - Database questions using SQL**. The Leetcode database was first needed to be regenerated in my MySQL server using the SQL Schema, presented along with each Leetcode question. This is required to be able to make a query in the Jupyter Notebook using my MySQL credentials. All of my solutions are presented in Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode_Database_Questions.ipynb">Leetcode_Database_Questions</a>**.
 
 
 
-Also included in this repo is my notes from a course Complete SQL Mastery Class by Mosh Hamedani. 
-
-Note on the jupyter notebook files attached to this repo:
-
-- SQL_Coding.ipynb file contains my solution to all of the class exercises.
-- SQL_Theoretical_Points.ipynb contains all of the notes I took from the course videos. 
-- Leetcode_Database_Questions.ipynb contains my solutions to the Leetcode - database questions using SQL.
+<a name="3"></a>
+## Workflow to generate the Leetcode databases in the MySQL server
 
 The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details in the Leetcode_Database_Questions.ipynb file):
 
@@ -181,3 +187,12 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Close the connection
         conn.close()
         
+<a name="4"></a>
+## Complete SQL Mastery
+
+Also included in this repo is my notes from a course Complete SQL Mastery Class by Mosh Hamedani. 
+
+Note on the jupyter notebook files attached to this repo:
+
+- SQL_Coding.ipynb file contains my solution to all of the class exercises.
+- SQL_Theoretical_Points.ipynb contains all of the notes I took from the course videos. 
