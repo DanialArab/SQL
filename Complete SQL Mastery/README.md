@@ -18,7 +18,20 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     8. [The ORDER BY clause](#14)
     9. [ The LIMIT clause](#15)
 3. [Retrieving Data From Multiple Tables](#16)
-    1. 
+    1. [Inner Joins](#17)
+    2. [Joining across databases](#18)
+    3. [Self Joins](#19)
+    4. [Joining Multiple Tables](#20)
+    5. [Compound Join Conditions](#21)
+    6. [Implicit Join Syntax](#22)
+    7. [Outer Joins](#23)
+    8. [Outer Joins between Multiple Tables](#24)
+    9. [Self Outer Joins](#25)
+    10. [The Using Clause](#26)
+    11. [Natural Joins](#27)
+    12. [Cross Joins](#28)
+    13. [Unions](#29)
+4. [Inserting, Updating, and Deleting Data](#30)
 
 <a name="1"></a>
 ### Introduction 
@@ -336,3 +349,43 @@ POINT: Again the order matters! The LIMIT clause should always come at the end.
 <a name="16"></a>
 ### Retrieving Data From Multiple Tables
 
+<a name="17"></a>
+#### Inner Joins
+
+
+
+<a name="18"></a>
+#### Joining across databases
+
+<a name="19"></a>
+#### Self Joins
+
+<a name="20"></a>
+#### Joining Multiple Tables
+
+<a name="21"></a>
+#### Compound Join Conditions
+
+<a name="22"></a>
+#### Implicit Join Syntax
+
+<a name="23"></a>
+#### Outer Joins
+
+<a name="24"></a>
+#### Outer Joins between Multiple Tables
+
+<a name="25"></a>
+#### Self Outer Joins
+
+<a name="26"></a>
+#### The Using Clause
+
+<a name="27"></a>
+#### Natural Joins
+
+<a name="28"></a>
+#### Cross Joins
+
+<a name="29"></a>
+#### Unions
