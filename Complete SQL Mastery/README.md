@@ -49,7 +49,15 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     3. [The HAVING Clause](#45)
     4. [The ROLLUP Operator](#46)
 6. [Writing a complex query](#47)
-    
+    1. [Subqueries](#48)
+    2. [Subqueries vs. JOINs](#49)
+    3. [ALL](#50)
+    4. [ANY or SOME (they are equivalent)](#51)
+    5. [Correlated Subqueries](#52)
+    6. [EXISTS](#53)
+    7. [Subqueries in the SELECT clause](#54)
+    8. [Subqueries in the FROM clause](#55)
+7. [Essential MySQL Functions](#56)
 
    
 <a name="1"></a>
@@ -1379,5 +1387,51 @@ When we use a ROLLUP operator we cannot use a column alias in the GROUP BY claus
 <a name="47"></a>
 ### Writing a complex query
   
-    
+6. [W](#47)
+    1. [](#48)
+    2. [](#49)
+    3. [](#50)
+    4. [)](#51)
+    5. [](#52)
+    6. [](#53)
+    7. [](#54)
+    8. [](#55)
+7. [](#56)
+
+
+<a name="48"></a>
+#### Subqueries
+
+<a name="49"></a>
+#### Subqueries vs. JOINs
+
+<a name="50"></a>
+#### ALL
+
+<a name="51"></a>
+#### ANY or SOME (they are equivalent
+
+<a name="52"></a>
+#### Correlated Subqueries
+
+<a name="53"></a>
+#### EXISTS
+
+<a name="54"></a>
+#### Subqueries in the SELECT clause
+
+<a name="55"></a>
+#### Subqueries in the FROM clause
+
+
+
+
+
+   
+<a name="56"></a>
+### Essential MySQL Functions 
+
+<a name="57"></a>
+#### 
+
 
