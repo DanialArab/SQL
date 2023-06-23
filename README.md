@@ -246,9 +246,4 @@ In terms of Leetcode database questions, the database first need to be regenerat
 <a name="4"></a>
 ## Complete SQL Mastery
 
-Also included in this repo is my notes from a course Complete SQL Mastery Class by Mosh Hamedani. 
-
-Note on the jupyter notebook files attached to this repo:
-
-- SQL_Coding.ipynb file contains my solution to all of the class exercises.
-- SQL_Theoretical_Points.ipynb contains all of the notes I took from the course videos. 
+Also included in this repo are <a href="https://github.com/DanialArab/SQL/tree/master/Complete%20SQL%20Mastery">my notes/a> from the course Complete SQL Mastery. My solutions to all of the class exercises are also detailed in the Jupyter Notebook <a href="linmk)
