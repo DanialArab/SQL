@@ -10,7 +10,7 @@ This repo documents my solutions to **Leetcode - Database questions using SQL**.
 <a name="1"></a>
 ## Leetcode - Database Questions
 
-The following table details the Leetcode database question I solved so far:
+The following table details the Leetcode database question I have solved so far:
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
