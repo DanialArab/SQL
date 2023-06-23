@@ -70,4 +70,4 @@ The following table details the Leetcode database question I have solved so far:
 <a name="2"></a>
 ## Complete SQL Mastery
 
-Also included in this repo are <a href="https://github.com/DanialArab/SQL/tree/master/Complete%20SQL%20Mastery">my notes</a> from the course Complete SQL Mastery. My solutions to all of the class exercises are also detailed in the <a href="https://github.com/DanialArab/SQL/blob/master/Complete%20SQL%20Mastery/Complete_SQL_Mastery_Coding.ipynb">Jupyter Notebook</a>.
+Also included in this repo are <a href="https://github.com/DanialArab/SQL/tree/master/Complete%20SQL%20Mastery">my notes</a> from the course Complete SQL Mastery. My solutions to all of the class exercises are also detailed as a <a href="https://github.com/DanialArab/SQL/blob/master/Complete%20SQL%20Mastery/Complete_SQL_Mastery_Coding.ipynb">Jupyter Notebook</a>.
