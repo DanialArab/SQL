@@ -44,7 +44,12 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     10. [Using Subqueries in Updates](#40)
     11. [Deleting rows](#41)
 5. [Summarizing Data](#42)
-
+    1. [Aggregate functions](#43)
+    2. [The GROUP BY Clause](#44)
+    3. [The HAVING Clause](#45)
+    4. [The ROLLUP Operator](#46)
+6. [Writing a complex query](#47)
+    
 
    
 <a name="1"></a>
@@ -1127,3 +1132,252 @@ Also, we can use subqueries in the WHERE clause:
         
 <a name="42"></a>
 ### Summarizing Data
+
+We will learn how to write queries that summarize data. This section is extremely important specially if you work with lots of data.
+
+<a name="43"></a>
+#### Aggregate functions
+
+These functions take a series of values and aggregate them to produce a single value for example MAX () returns the maximum in a series of values. Like
+
+        USE sql_invoicing;
+        SELECT MAX(invoice_total)
+        FROM invoices
+
+The name of the returned column is set to the expression we used, in this case it is MAX(invoice_total) let’s be more meaningful:
+
+        USE sql_invoicing;
+        SELECT MAX(invoice_total) AS highest 
+        FROM invoices
+
+In the same query we can also calculate the minimum, average, sum, and count:
+
+        USE sql_invoicing;
+        SELECT
+        MAX(invoice_total) AS highest, 
+        MIN(invoice_total) AS lowest,
+        AVG(invoice_total) AS average,
+        SUM(invoice_total) AS total,
+        COUNT(invoice_total) AS number_of_invoices 
+        FROM invoices
+
+Above we apply these functions on columns with numeric values but also we can apply them to the columns with dates and strings:
+
+        USE sql_invoicing;
+        SELECT
+        MAX(payment_date) AS highest, 
+        FROM invoices
+
+The above query returns the latest date that we received the payment.
+
+POINT: the aggregate functions ONLY operate on NON NULL values. And if you have a NULL values in your columns it is not going to be included in these functions’ calculations.
+
+If you want to get the total number in your tables irrespective of the NULL values you have to use COUNT(*).
+
+Most of the times we use a column name inside the parenthesis in front of the aggregate functions but we also can write an expression like:
+
+        SELECT
+            MAX(invoice_total) AS highest, 
+            MIN(invoice_total) AS lowest,
+            AVG(invoice_total) AS average,
+            SUM(invoice_total * 1.1) AS total,
+            COUNT(invoice_total) AS number_of_invoices 
+        FROM invoices
+
+Also if you have a filter, the calculations would be based on the filtered results that match the certain criteria:
+
+        SELECT
+            MAX(invoice_total) AS highest, 
+            MIN(invoice_total) AS lowest,
+            AVG(invoice_total) AS average,
+            SUM(invoice_total * 1.1) AS total,
+            COUNT(invoice_total) AS number_of_invoices 
+        FROM invoices
+        WHERE invoice_date > ‘2019-07-01’
+
+Point: by default, all these aggregate functions mentioned above take duplicate values and if you want to exclude duplicates you have to use the DISTINCT keyword like:
+
+        SELECT
+            MAX(invoice_total) AS highest, 
+            MIN(invoice_total) AS lowest,
+            AVG(invoice_total) AS average,
+            SUM(invoice_total * 1.1) AS total,
+            COUNT(DISTINCT client_id) AS total_records 
+        FROM invoices
+        WHERE invoice_date > ‘2019-07-01’
+
+<a name="44"></a>
+#### The GROUP BY Clause
+
+        USE sql_invoicing;
+        SELECT
+            Client_id,
+            SUM(invoice_total) AS total_sales
+        FROM invoices
+        GROUP BY client_id
+        ORDER BY total_sales DESC 
+
+By default, our data would be sorted by the column in the GROUP BY clause but we can change it by the ORDER BY clause, as above.
+
+We can also apply a filter before grouping our data:
+
+        USE sql_invoicing;
+        SELECT 
+            client_id,
+            SUM(invoice_total) AS total_sales 
+        FROM invoices 
+        WHERE invoice_date >= ‘2019-07-01’
+        GROUP BY client_id 
+        ORDER BY total_sales DESC 
+
+So here we can group data based on a single column.
+
+Pay attention to the order of the above clauses FIRST SELECT, then FROM, then optionally WHERE, then GROUP BY, then ORDER BY. The GROUP BY clause always comes after the FROM and WHERE clauses and BEFORE ORDER BY.
+
+How to group data based on multiple columns:
+
+        SELECT 
+            state,
+            city,
+            SUM(invoice_total) AS total_sales
+        FROM invoices
+        JOIN clients USING (client_id)
+        GROUP BY state, city
+
+We get one record for each state-city combination.
+
+Exercise:
+
+        USE sql_invoicing;
+        SELECT
+            data,
+            pm.name AS payment_method, 
+            SUM(amount) AS total_payments 
+        FROM payments p
+        JOIN payment_methods pm -- so I cannot use USING clause! 
+            ON p.payment_method = pm.payment_method_id 
+        GROUP BY date, payment_method
+        ORDER BY date 
+
+<a name="45"></a>
+#### The HAVING Clause
+
+If we want to filter the results after grouping our rows we have to use HAVING clause and NOT WHERE clause. Like:
+
+        SELECT 
+            client_id,
+            SUM(invoice_total) AS total_sales 
+        FROM invoices 
+        GROUP BY client_id 
+        HAVING total_sales > 500 
+
+So with WHERE clause we can filter data before our rows are grouped, while with HAVING clause we can filter data after our rows are grouped. That is the difference between WHERE and HAVING clauses.
+
+POINT: In a HAVING clause we can have a compound search condition (just like the WHERE clause) BUT the columns that we use in HAVING clause should be part of our SELECT clause. In contrast, when writing a WHERE clause we can reference any columns whether or not they are included in the SELECT clause.
+
+like:
+
+        SELECT 
+            client_id,
+            SUM(invoice_total) AS total_sales,
+            COUNT (*) AS number_of_invoices 
+        FROM invoices 
+        GROUP BY client_id 
+        HAVING total_sales > 500 AND number_of_invoices > 5
+
+Exercise:
+
+Get the customers who are located in ‘VA’ and have spent more than $100:
+
+Solution:
+
+        USE sql_store;
+        SELECT 
+            c.customer_id,
+            c.first_name,
+            c.last_name,
+            SUM (oi.quantity * oi.unit_price) AS total_sales 
+        FROM customers c 
+        JOIN orders o USING (customer_id)
+        JOIN order_items oi USING (order_id)
+        WHERE state = ‘VA’
+        GROUP BY 
+            c.customer_id,
+            c.first_name,
+            c.last_name
+        HAVING toal_Sales > 100
+
+As a rule of thumb when we have an aggregate function in the SELECT statement and we want to group our data we should group by all the columns in the SELECT clause.
+
+<a name="46"></a>
+#### The ROLLUP Operator
+
+Only available in MySQL (and not part of standard SQL language, so I won't be able to execute it in SQL server or oracle), which summarizes our entire results set with one extra row. The ROLLUP operator only applies to the columns that aggregate values.
+
+        con = connector('sql_invoicing')
+        pd.read_sql("""
+        SELECT 
+            client_id,
+            SUM(invoice_total) AS total_sales
+        FROM invoices
+        GROUP BY client_id WITH ROLLUP
+        """, con)
+        
+        client_id	total_sales
+        0	1.0	802.89
+        1	2.0	101.79
+        2	3.0	705.90
+        3	5.0	980.02
+        4	NaN	2590.60
+
+What if we GROUP BY multiple columns:
+
+        pd.read_sql("""
+        SELECT 
+            state, 
+            city, 
+            SUM(invoice_total) AS total_sales
+        FROM invoices
+        JOIN clients c USING (client_id)
+        GROUP BY state, city WITH ROLLUP
+        """, con)
+        
+        state	city	total_sales
+        0	CA	San Francisco	705.90
+        1	CA	None	705.90
+        2	NY	Syracuse	802.89
+        3	NY	None	802.89
+        4	OR	Portland	980.02
+        5	OR	None	980.02
+        6	WV	Huntington	101.79
+        7	WV	None	101.79
+        8	None	None	2590.60
+
+So when GROUP BY multiple columns, we get an extra row for each grouop and also one extra row at the end for the entire results set, as above.
+
+Exercise:
+
+        pd.read_sql("""
+        SELECT 
+            pm.name AS payment_method,
+            SUM(amount) AS total
+        FROM payments p
+        JOIN payment_methods pm
+            ON p.payment_method = pm.payment_method_id
+        GROUP BY pm.name WITH ROLLUP 
+        """, con)
+
+        payment_method	total
+        0	Cash	10.00
+        1	Credit Card	351.38
+        2	None	361.38
+
+When we use a ROLLUP operator we cannot use a column alias in the GROUP BY clause so the following won't work:
+
+        GROUP BY payment_method WITH ROLLUP
+
+<a name="47"></a>
+### Writing a complex query
+  
+    
+
