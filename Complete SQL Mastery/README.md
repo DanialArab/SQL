@@ -1262,9 +1262,9 @@ Above we apply these functions on columns with numeric values but also we can ap
 
 The above query returns the latest date that we received the payment.
 
-POINT: the aggregate functions ONLY operate on NON NULL values. And if you have a NULL values in your columns it is not going to be included in these functions’ calculations.
+POINT: the aggregate functions ONLY operate on NON NULL values. And if you have a NULL value in your columns it is not going to be included in these functions’ calculations.
 
-If you want to get the total number in your tables irrespective of the NULL values you have to use COUNT(*).
+If you want to get the total number in your tables irrespective of the NULL values you have to use COUNT(*) meaning it counts all the rows, including those with NULL values, and returns a single value representing the count.
 
 Most of the times we use a column name inside the parenthesis in front of the aggregate functions but we also can write an expression like:
 
