@@ -64,7 +64,7 @@ The following table details the Leetcode database question I have solved so far:
 |48 | 596| Classes More Than 5 Students| Easy |
 |49 |197| Rising Temperature | Easy |
 |50 |1527| Patients With a Condition | Easy |
-
+|51|1393| Capital Gain/Loss|Medium|
 
 
 <a name="2"></a>
