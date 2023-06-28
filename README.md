@@ -65,7 +65,7 @@ The following table details the Leetcode database question I have solved so far:
 |49 |197| Rising Temperature | Easy |
 |50 |1527| Patients With a Condition | Easy |
 |51|1393| Capital Gain/Loss|Medium|
-|52|1204| Last Person to Fit in the Bus|Easy|
+|52|1204| Last Person to Fit in the Bus|Medium|
 
 <a name="2"></a>
 ## Complete SQL Mastery
