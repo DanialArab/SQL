@@ -1813,6 +1813,9 @@ https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
         DAYNAME
         MONTHNAME
         EXTRACT
+        DATEDIFF
+
+https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html
 
 <a name="61"></a>
 #### FORMATTING Date and Times
