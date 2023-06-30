@@ -68,6 +68,7 @@ The following table details the Leetcode database question I have solved so far:
 |53|608| Tree Node|Medium|
 |54|1934| Confirmation Rate|Medium|
 |55|626| Exchange Seats|Medium|
+|56|1321| Restaurant Growth|Medium|
 
 
 <a name="2"></a>
