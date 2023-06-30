@@ -67,6 +67,7 @@ The following table details the Leetcode database question I have solved so far:
 |52|1204| Last Person to Fit in the Bus|Medium|
 |53|608| Tree Node|Medium|
 |54|1934| Confirmation Rate|Medium|
+|55|626| Exchange Seats|Medium|
 
 
 <a name="2"></a>
