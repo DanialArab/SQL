@@ -70,6 +70,10 @@ The following table details the Leetcode database question I have solved so far:
 |55|626| Exchange Seats|Medium|
 |56|1321| Restaurant Growth|Medium|
 |57|570| Managers with at Least 5 Direct Reports|Medium|
+|58|1193| Monthly Transactions I|Medium|
+
+
+
 
 
 <a name="2"></a>
