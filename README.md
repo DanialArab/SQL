@@ -78,6 +78,7 @@ The following table details the Leetcode database question I have solved so far:
 |63|1045| Customers Who Bought All Products|Medium|
 |64|1164| Product Price at a Given Date|Medium|
 |65|1158| Market Analysis I|Medium|
+|66|1341| Movie Rating|Medium|
 
 
 
