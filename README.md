@@ -77,6 +77,8 @@ The following table details the Leetcode database question I have solved so far:
 |62|602| Friend Requests II: Who Has the Most Friends|Medium|
 |63|1045| Customers Who Bought All Products|Medium|
 |64|1164| Product Price at a Given Date|Medium|
+|65|1158| Market Analysis I|Medium|
+
 
 
 
