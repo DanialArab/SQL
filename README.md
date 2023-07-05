@@ -75,6 +75,7 @@ The following table details the Leetcode database question I have solved so far:
 |60|1174| Immediate Food Delivery II|Medium|
 |61|178| Rank Scores|Medium|
 |62|602| Friend Requests II: Who Has the Most Friends|Medium|
+|63|1045| Customers Who Bought All Products|Medium|
 
 
 
