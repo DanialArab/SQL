@@ -76,6 +76,7 @@ The following table details the Leetcode database question I have solved so far:
 |61|178| Rank Scores|Medium|
 |62|602| Friend Requests II: Who Has the Most Friends|Medium|
 |63|1045| Customers Who Bought All Products|Medium|
+|64|1164| Product Price at a Given Date|Medium|
 
 
 
