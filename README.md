@@ -81,6 +81,8 @@ The following table details the Leetcode database question I have solved so far:
 |66|1341| Movie Rating|Medium|
 |67|585| Investments in 2016|Medium|
 |68|184| Department Highest Salary|Medium|
+|69|1070| Product Sales Analysis III|Medium|
+
 
 
 
