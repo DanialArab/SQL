@@ -80,6 +80,7 @@ The following table details the Leetcode database question I have solved so far:
 |65|1158| Market Analysis I|Medium|
 |66|1341| Movie Rating|Medium|
 |67|585| Investments in 2016|Medium|
+|68|184| Department Highest Salary|Medium|
 
 
 
