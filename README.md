@@ -79,6 +79,7 @@ The following table details the Leetcode database question I have solved so far:
 |64|1164| Product Price at a Given Date|Medium|
 |65|1158| Market Analysis I|Medium|
 |66|1341| Movie Rating|Medium|
+|67|585| Investments in 2016|Medium|
 
 
 
