@@ -87,6 +87,7 @@ The following table details the Leetcode database question I have solved so far:
 |72|176| Second Highest Salary|Medium|
 |73|177| Nth Highest Salary|Medium|
 |74|185| Department Top Three Salaries|Hard|
+|75|601| Human Traffic of Stadium|Hard|
 
  
 
