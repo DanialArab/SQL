@@ -65,6 +65,7 @@ The following table details the Leetcode database question I have solved so far:
 |50 |1527| Patients With a Condition | Easy |
 |51 |1350| Students With Invalid Departments | Easy |
 |52 |1303| Find the Team Size| Easy |
+|53 |1821| Find Customers With Positive Revenue this Year| Easy |
 
 
 
