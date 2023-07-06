@@ -82,6 +82,8 @@ The following table details the Leetcode database question I have solved so far:
 |67|585| Investments in 2016|Medium|
 |68|184| Department Highest Salary|Medium|
 |69|1070| Product Sales Analysis III|Medium|
+|70|180| Consecutive Numbers|Medium|
+
 
 
 
