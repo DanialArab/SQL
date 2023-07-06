@@ -18,3 +18,26 @@ By using window functions, you can avoid self-joins or subqueries that would be 
 https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html#function_lag
 
 https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html#function_lead
+
+2. Fo the question 176. Second Highest Salary:
+
+first approach using LIMIT
+
+    SELECT salary AS SecondHighestSalary
+    FROM Employee
+    ORDER BY salary
+    LIMIT 1, 1
+
+But this approach is not flawless and the better approach is to use MAX becase it takes care of null also:
+
+    SELECT 
+        MAX(salary) AS SecondHighestSalary
+    FROM Employee
+    WHERE salary NOT IN ( 
+                        SELECT MAX(salary)
+                        FROM Employee)
+
+takeway:
+If there is no record return null:
+
+When I have this condition it is better to go with MAX() because it returns null in case of not having found max!
