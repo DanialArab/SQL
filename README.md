@@ -84,7 +84,7 @@ The following table details the Leetcode database question I have solved so far:
 |69|1070| Product Sales Analysis III|Medium|
 |70|180| Consecutive Numbers|Medium|
 |71|550| Game Play Analysis IV|Medium|
-
+|72|176| Second Highest Salary|Medium|
 
 
 
