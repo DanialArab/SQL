@@ -37,7 +37,5 @@ But this approach is not flawless and the better approach is to use MAX becase i
                         SELECT MAX(salary)
                         FROM Employee)
 
-takeway:
-If there is no record return null:
-
-When I have this condition it is better to go with MAX() because it returns null in case of not having found max!
+takeaway:
+If there is a condition of "return no null when no record ", it is better to go with MAX() because it returns null in case of not having found max!
