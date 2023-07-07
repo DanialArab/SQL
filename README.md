@@ -86,6 +86,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |65 |2082| The Number of Rich Customers| Easy |
 |66 |2377| Sort the Olympic Table| Easy |
 |67 |1435| Create a Session Bar Chart| Easy |
+|68 |1082| Sales Analysis I| Easy |
+
 
 
 
