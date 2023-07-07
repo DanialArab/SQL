@@ -123,6 +123,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |21|550| Game Play Analysis IV|Medium|
 |22|176| Second Highest Salary|Medium|
 |23|177| Nth Highest Salary|Medium|
+|24|1445| Apples & Oranges|Medium|
+
 
 
 <a name="4"></a>
