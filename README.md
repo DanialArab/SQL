@@ -78,6 +78,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |57 |1623| All Valid Triplets That Can Represent a Country| Easy |
 |58 |2026| Low-Quality Problems| Easy |
 |59 |1421| NPV Queries| Easy |
+|60 |1777| Product's Price for Each Store| Easy |
+
 
 
 
