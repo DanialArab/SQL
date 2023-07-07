@@ -12,7 +12,7 @@ This repository documents my solutions to the **Leetcode - Database questions us
 <a name="1"></a>
 ## Leetcode Database Questions
 
-The following table details the Leetcode database question I have solved so far:
+The following tables detail the Leetcode database question I have solved so far:
 
 <a name="2"></a>
 ### Easy Questions
