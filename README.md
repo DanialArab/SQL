@@ -125,6 +125,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |22|176| Second Highest Salary|Medium|
 |23|177| Nth Highest Salary|Medium|
 |24|1445| Apples & Oranges|Medium|
+|25|2084| Drop Type 1 Orders for Customers With Type 0 Orders|Medium|
 
 
 
