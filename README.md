@@ -84,6 +84,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |63 |1069| Product Sales Analysis II| Easy |
 |64 |613| Shortest Distance in a Line| Easy |
 |65 |2082| The Number of Rich Customers| Easy |
+|66 |2377| Sort the Olympic Table| Easy |
+
 
 
 
