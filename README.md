@@ -3,9 +3,9 @@
 This repository documents my solutions to the **Leetcode - Database questions using SQL**. The Leetcode databases are first needed to be regenerated in my MySQL server using the SQL Schema, presented along with each Leetcode question. This is required to be able to make a query in the Jupyter Notebook. All of my solutions are presented in Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode%20Database%20Questions/Leetcode_Database_Questions.ipynb">Leetcode_Database_Questions</a>**. This repo contains the following directories and each one contains the pertinent files including README and Jupyter Notebook files: 
 
 1. [Leetcode Database Questions](#1)
-   1. [Easy Leetcode Database Questions](#2)
-   2. [Medium Leetcode Database Questions](#3)
-   3. [Hard Leetcode Database Questions](#4)
+   1. [Easy Questions](#2)
+   2. [Medium Questions](#3)
+   3. [Hard Questions](#4)
 3. [Complete SQL Mastery](#5)
 
 
@@ -15,7 +15,7 @@ This repository documents my solutions to the **Leetcode - Database questions us
 The following table details the Leetcode database question I have solved so far:
 
 <a name="2"></a>
-### Easy Leetcode Database Questions
+### Easy Questions
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
@@ -78,49 +78,44 @@ The following table details the Leetcode database question I have solved so far:
 
 
 
-
-
-
-
-
 <a name="3"></a>
-### Medium Leetcode Database Questions
+### Medium Questions
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
-|51|1393| Capital Gain/Loss|Medium|
-|52|1204| Last Person to Fit in the Bus|Medium|
-|53|608| Tree Node|Medium|
-|54|1934| Confirmation Rate|Medium|
-|55|626| Exchange Seats|Medium|
-|56|1321| Restaurant Growth|Medium|
-|57|570| Managers with at Least 5 Direct Reports|Medium|
-|58|1193| Monthly Transactions I|Medium|
-|59|1907| Count Salary Categories|Medium|
-|60|1174| Immediate Food Delivery II|Medium|
-|61|178| Rank Scores|Medium|
-|62|602| Friend Requests II: Who Has the Most Friends|Medium|
-|63|1045| Customers Who Bought All Products|Medium|
-|64|1164| Product Price at a Given Date|Medium|
-|65|1158| Market Analysis I|Medium|
-|66|1341| Movie Rating|Medium|
-|67|585| Investments in 2016|Medium|
-|68|184| Department Highest Salary|Medium|
-|69|1070| Product Sales Analysis III|Medium|
-|70|180| Consecutive Numbers|Medium|
-|71|550| Game Play Analysis IV|Medium|
-|72|176| Second Highest Salary|Medium|
-|73|177| Nth Highest Salary|Medium|
+|1|1393| Capital Gain/Loss|Medium|
+|2|1204| Last Person to Fit in the Bus|Medium|
+|3|608| Tree Node|Medium|
+|4|1934| Confirmation Rate|Medium|
+|5|626| Exchange Seats|Medium|
+|6|1321| Restaurant Growth|Medium|
+|7|570| Managers with at Least 5 Direct Reports|Medium|
+|8|1193| Monthly Transactions I|Medium|
+|9|1907| Count Salary Categories|Medium|
+|10|1174| Immediate Food Delivery II|Medium|
+|11|178| Rank Scores|Medium|
+|12|602| Friend Requests II: Who Has the Most Friends|Medium|
+|13|1045| Customers Who Bought All Products|Medium|
+|14|1164| Product Price at a Given Date|Medium|
+|15|1158| Market Analysis I|Medium|
+|16|1341| Movie Rating|Medium|
+|17|585| Investments in 2016|Medium|
+|18|184| Department Highest Salary|Medium|
+|19|1070| Product Sales Analysis III|Medium|
+|20|180| Consecutive Numbers|Medium|
+|21|550| Game Play Analysis IV|Medium|
+|22|176| Second Highest Salary|Medium|
+|23|177| Nth Highest Salary|Medium|
 
 
 <a name="4"></a>
-### Hard Leetcode Database Questions
+### Hard Questions
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
-|74|185| Department Top Three Salaries|Hard|
-|75|601| Human Traffic of Stadium|Hard|
-|76|262| Trips and Users|Hard|
+|1|185| Department Top Three Salaries|Hard|
+|2|601| Human Traffic of Stadium|Hard|
+|3|262| Trips and Users|Hard|
 
  
 
