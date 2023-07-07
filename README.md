@@ -82,6 +82,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |61 |1565| Unique Orders and Customers Per Month| Easy |
 |62 |1173| Immediate Food Delivery I| Easy |
 |63 |1069| Product Sales Analysis II| Easy |
+|64 |613| Shortest Distance in a Line| Easy |
 
 
 
