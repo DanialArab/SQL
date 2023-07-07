@@ -87,6 +87,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |66 |2377| Sort the Olympic Table| Easy |
 |67 |1435| Create a Session Bar Chart| Easy |
 |68 |1082| Sales Analysis I| Easy |
+|69 |2072| The Winner University| Easy |
 
 
 
