@@ -79,6 +79,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |58 |2026| Low-Quality Problems| Easy |
 |59 |1421| NPV Queries| Easy |
 |60 |1777| Product's Price for Each Store| Easy |
+|61 |1565| Unique Orders and Customers Per Month| Easy |
+
 
 
 
