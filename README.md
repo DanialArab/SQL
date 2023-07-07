@@ -77,6 +77,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |56 |1853| Convert Date Format| Easy |
 |57 |1623| All Valid Triplets That Can Represent a Country| Easy |
 |58 |2026| Low-Quality Problems| Easy |
+|59 |1421| NPV Queries| Easy |
 
 
 
