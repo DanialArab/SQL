@@ -78,7 +78,8 @@ The following table details the Leetcode database question I have solved so far:
 
 
 
-
+|**Index**|**Question ID** | **Question title**|  **Difficulty level**|
+| -- | --|  -- | -- |
 |51|1393| Capital Gain/Loss|Medium|
 |52|1204| Last Person to Fit in the Bus|Medium|
 |53|608| Tree Node|Medium|
