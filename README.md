@@ -3,13 +3,19 @@
 This repository documents my solutions to the **Leetcode - Database questions using SQL**. The Leetcode databases are first needed to be regenerated in my MySQL server using the SQL Schema, presented along with each Leetcode question. This is required to be able to make a query in the Jupyter Notebook. All of my solutions are presented in Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode%20Database%20Questions/Leetcode_Database_Questions.ipynb">Leetcode_Database_Questions</a>**. This repo contains the following directories and each one contains the pertinent files including README and Jupyter Notebook files: 
 
 1. [Leetcode Database Questions](#1)
-2. [Complete SQL Mastery](#2)
+   1. [Easy Leetcode Database Questions](#2)
+   2. [Medium Leetcode Database Questions](#3)
+   3. [Hard Leetcode Database Questions](#4)
+3. [Complete SQL Mastery](#5)
 
 
 <a name="1"></a>
 ## Leetcode Database Questions
 
 The following table details the Leetcode database question I have solved so far:
+
+<a name="2"></a>
+### Easy Leetcode Database Questions
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
@@ -77,6 +83,8 @@ The following table details the Leetcode database question I have solved so far:
 
 
 
+<a name="3"></a>
+### Medium Leetcode Database Questions
 
 |**Index**|**Question ID** | **Question title**|  **Difficulty level**|
 | -- | --|  -- | -- |
@@ -103,6 +111,13 @@ The following table details the Leetcode database question I have solved so far:
 |71|550| Game Play Analysis IV|Medium|
 |72|176| Second Highest Salary|Medium|
 |73|177| Nth Highest Salary|Medium|
+
+
+<a name="4"></a>
+### Hard Leetcode Database Questions
+
+|**Index**|**Question ID** | **Question title**|  **Difficulty level**|
+| -- | --|  -- | -- |
 |74|185| Department Top Three Salaries|Hard|
 |75|601| Human Traffic of Stadium|Hard|
 |76|262| Trips and Users|Hard|
@@ -118,7 +133,7 @@ The following table details the Leetcode database question I have solved so far:
 
 
 
-<a name="2"></a>
+<a name="5"></a>
 ## Complete SQL Mastery
 
 Also included in this repo are <a href="https://github.com/DanialArab/SQL/tree/master/Complete%20SQL%20Mastery">my notes</a> from the course Complete SQL Mastery. My solutions to all of the class exercises are also detailed as a <a href="https://github.com/DanialArab/SQL/blob/master/Complete%20SQL%20Mastery/Complete_SQL_Mastery_Coding.ipynb">Jupyter Notebook</a>.
