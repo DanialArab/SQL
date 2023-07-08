@@ -90,6 +90,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |69 |2072| The Winner University| Easy |
 |70 |1511| Customer Order Frequency| Easy |
 |71 |2329| Product Sales Analysis V| Easy |
+|72 |603| Consecutive Available Seats| Easy |
+
 
 
 
