@@ -131,6 +131,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |25|2084| Drop Type 1 Orders for Customers With Type 0 Orders|Medium|
 |26|1308| Running Total for Different Genders|Medium|
 |27|1270| All People Report to the Given Manager|Medium|
+|28|1783| Grand Slam Titles|Medium|
+
 
 
 
