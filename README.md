@@ -93,11 +93,12 @@ The following tables detail the Leetcode database question I have solved so far:
 |72 |603| Consecutive Available Seats| Easy |
 |73 |1294| Weather Type in Each Country| Easy |
 |74 |1241| Number of Comments per Post| Easy |
+|75 |2687| Bikes Last Time Used| Easy |
 
 
 
 
-
+.
 
 
 
