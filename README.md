@@ -91,6 +91,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |70 |1511| Customer Order Frequency| Easy |
 |71 |2329| Product Sales Analysis V| Easy |
 |72 |603| Consecutive Available Seats| Easy |
+|73 |1294| Weather Type in Each Country| Easy |
+
 
 
 
