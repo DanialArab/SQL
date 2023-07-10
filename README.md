@@ -100,6 +100,9 @@ The following tables detail the Leetcode database question I have solved so far:
 |79 |2669| Count Artist Occurrences On Spotify Ranking List| Easy |
 |80 |1543| Fix Product Name Format| Easy |
 |81 |1322| Ads Performance| Easy |
+|82 |1809| Ad-Free Sessions| Easy |
+
+
 
 
 
