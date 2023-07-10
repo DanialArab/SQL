@@ -97,6 +97,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |76 |1113| Reported Posts| Easy |
 |77 |2480| Form a Chemical Bond| Easy |
 |78 |2504| Concatenate the Name and the Profession| Easy |
+|79 |2669| Count Artist Occurrences On Spotify Ranking List| Easy |
+
 
 
 
