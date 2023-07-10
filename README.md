@@ -98,6 +98,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |77 |2480| Form a Chemical Bond| Easy |
 |78 |2504| Concatenate the Name and the Profession| Easy |
 |79 |2669| Count Artist Occurrences On Spotify Ranking List| Easy |
+|80 |1543| Fix Product Name Format| Easy |
+
 
 
 
