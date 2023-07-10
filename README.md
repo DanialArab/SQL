@@ -99,6 +99,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |78 |2504| Concatenate the Name and the Profession| Easy |
 |79 |2669| Count Artist Occurrences On Spotify Ranking List| Easy |
 |80 |1543| Fix Product Name Format| Easy |
+|81 |1322| Ads Performance| Easy |
+
 
 
 
