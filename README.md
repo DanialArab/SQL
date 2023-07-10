@@ -96,6 +96,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |75 |2687| Bikes Last Time Used| Easy |
 |76 |1113| Reported Posts| Easy |
 |77 |2480| Form a Chemical Bond| Easy |
+|78 |2504| Concatenate the Name and the Profession| Easy |
+
 
 
 
