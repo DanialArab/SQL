@@ -95,6 +95,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |74 |1241| Number of Comments per Post| Easy |
 |75 |2687| Bikes Last Time Used| Easy |
 |76 |1113| Reported Posts| Easy |
+|77 |2480| Form a Chemical Bond| Easy |
+
 
 
 
