@@ -108,6 +108,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |87 |2205| The Number of Users That Are Eligible for Discount| Easy |
 |88 |1076| Project Employees II| Easy |
 |89 |1083| Sales Analysis II| Easy |
+|90 |2230| The Users That Are Eligible for Discount| Easy |
+
 
 
 
