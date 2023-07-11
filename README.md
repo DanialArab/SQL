@@ -106,6 +106,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |85 |1607| Sellers With No Sales| Easy |
 |86 |512| Game Play Analysis II| Easy |
 |87 |2205| The Number of Users That Are Eligible for Discount| Easy |
+|88 |1076| Project Employees II| Easy |
 
 
 
