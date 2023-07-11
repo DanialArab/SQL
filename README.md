@@ -110,6 +110,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |89 |1083| Sales Analysis II| Easy |
 |90 |2230| The Users That Are Eligible for Discount| Easy |
 |91 |1495| Friendly Movies Streamed Last Month| Easy |
+|92 |1142| User Activity for the Past 30 Days II| Easy |
+
 
 
 
