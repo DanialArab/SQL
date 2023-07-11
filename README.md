@@ -103,6 +103,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |82 |1809| Ad-Free Sessions| Easy |
 |83 |1939| Users That Actively Request Confirmation Messages| Easy |
 |84 |2668| Find Latest Salaries| Easy |
+|85 |1607| Sellers With No Sales| Easy |
 
 
 
