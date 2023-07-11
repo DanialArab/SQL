@@ -104,6 +104,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |83 |1939| Users That Actively Request Confirmation Messages| Easy |
 |84 |2668| Find Latest Salaries| Easy |
 |85 |1607| Sellers With No Sales| Easy |
+|86 |512| Game Play Analysis II| Easy |
+
 
 
 
