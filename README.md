@@ -102,6 +102,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |81 |1322| Ads Performance| Easy |
 |82 |1809| Ad-Free Sessions| Easy |
 |83 |1939| Users That Actively Request Confirmation Messages| Easy |
+|84 |2668| Find Latest Salaries| Easy |
+
 
 
 
