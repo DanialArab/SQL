@@ -112,6 +112,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |91 |1495| Friendly Movies Streamed Last Month| Easy |
 |92 |1142| User Activity for the Past 30 Days II| Easy |
 |93 |597| Friend Requests I: Overall Acceptance Rate| Easy |
+|94 |1677| Product's Worth Over Invoices| Easy |
+
 
 
 
