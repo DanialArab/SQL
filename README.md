@@ -177,6 +177,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |27|1270| All People Report to the Given Manager|Medium|
 |28|1783| Grand Slam Titles|Medium|
 |29|1285| Find the Start and End Number of Continuous Ranges|Medium|
+|30|2066| Account Balance|Medium|
+
 
 
 
