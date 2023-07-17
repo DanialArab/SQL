@@ -179,6 +179,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |29|1285| Find the Start and End Number of Continuous Ranges|Medium|
 |30|2066| Account Balance|Medium|
 |31|2372| Calculate the Influence of Each Salesperson|Medium|
+|32|1831| Maximum Transaction Each Day|Medium|
+
 
 
 
