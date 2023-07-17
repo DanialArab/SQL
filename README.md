@@ -180,6 +180,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |30|2066| Account Balance|Medium|
 |31|2372| Calculate the Influence of Each Salesperson|Medium|
 |32|1831| Maximum Transaction Each Day|Medium|
+|33|2298| Tasks Count in the Weekend|Medium|
 
 
 
