@@ -183,6 +183,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |33|2298| Tasks Count in the Weekend|Medium|
 |34|1699| Number of Calls Between Two Persons|Medium|
 |35|1596| The Most Frequently Ordered Products for Each Customer|Medium|
+|36|1468| Calculate Salaries|Medium|
+
 
 
 
