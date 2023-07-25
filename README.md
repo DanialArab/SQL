@@ -185,6 +185,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |35|1596| The Most Frequently Ordered Products for Each Customer|Medium|
 |36|1468| Calculate Salaries|Medium|
 |37|2041| Accepted Candidates From the Interviews|Medium|
+|38|1364| Number of Trusted Contacts of a Customer|Medium|
+
 
 
 
