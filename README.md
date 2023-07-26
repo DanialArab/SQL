@@ -187,8 +187,9 @@ The following tables detail the Leetcode database question I have solved so far:
 |37|2041| Accepted Candidates From the Interviews|Medium|
 |38|1364| Number of Trusted Contacts of a Customer|Medium|
 |39|1077| Project Employees III|Medium|
+|40|1715| Count Apples and Oranges|Medium|
 
- 
+
 
 
 
