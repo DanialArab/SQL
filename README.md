@@ -188,6 +188,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |38|1364| Number of Trusted Contacts of a Customer|Medium|
 |39|1077| Project Employees III|Medium|
 |40|1715| Count Apples and Oranges|Medium|
+|41|1398| Customers Who Bought Products A and B but Not C|Medium|
+
 
 
 
