@@ -189,6 +189,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |39|1077| Project Employees III|Medium|
 |40|1715| Count Apples and Oranges|Medium|
 |41|1398| Customers Who Bought Products A and B but Not C|Medium|
+|42|2324| Product Sales Analysis IV|Medium|
+
 
 
 
