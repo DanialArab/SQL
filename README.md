@@ -191,6 +191,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |41|1398| Customers Who Bought Products A and B but Not C|Medium|
 |42|2324| Product Sales Analysis IV|Medium|
 |43|1613| Find the Missing IDs|Medium|
+|44|1440| Evaluate Boolean Expression|Medium|
 
 
 
