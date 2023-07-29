@@ -170,3 +170,6 @@ In terms of Leetcode database questions, the database first need to be regenerat
         # Close the connection
         conn.close()
         
+**To leverage Spark SQL API to make SQL queries**
+
+I defined two functions: one is spark_df_reader to connect to the MySQL database through jdbc Driver and read the tables as a dictionary called dfs whose keys are the names of the tables and the values are the corresponding dataframes. The second function is temporary_view_registrator to register the Spark dataframes (one per table in the database) as a temporary view to be able to pass in direct SQL queries.
