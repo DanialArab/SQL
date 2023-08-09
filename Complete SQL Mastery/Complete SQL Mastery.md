@@ -85,8 +85,38 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     9. [Functions](#81)
     10. [Conventions](#82)
 10. [Triggers and Events](#83)
-    1. [](#84) 
-    
+    1. [Introduction](#84)
+    2. [Viewing Triggers](#85)
+    3. [Dropping Triggers](#86)
+    4. [Using Triggers for Auditing](#87)
+    5. [ Events](#88)
+    6. [Viewing, Dropping and Altering Events](#89)
+11. [Transactions and Concurrency](#90)
+    1. [Introduction](#91)
+    2. [Creating Transactions](#92)
+    3. [Concurrency and Locking](#93)
+    4. [Concurrency Problems](#94)
+    5. [Transaction Isolation Levels](#95)
+    6. [READ UNCOMMITTED Isolation Level](#96)
+    7. [READ COMMITTED Isolation Level](#97)
+    8. [REPEATABLE READ Isolation Level](#98)
+    9. [SERIALIZABLE Isolation Level](#99)
+    10. [Deadlocks](#100)
+13. [Data Types](#101)
+    1. [Introduction](#102)
+    2. [String Types](#103)
+    3. [Integer Types](#104)
+    4. [Fixed-point and Floating-point Types](#105)
+    5. [Boolean Types](#106)
+    6. [Enum and Set Types](#107)
+    7. [Date and Time Types](#108)
+    8. [Blob Types](#109)
+    9. [JSON Type](#110)(#110)
+15. [Designing Databases](#111)
+    1. [Introduction]
+    2. 
+17. [Indexing for High Performance]
+18. [Securing Databases]
 
    
 <a name="1"></a>
