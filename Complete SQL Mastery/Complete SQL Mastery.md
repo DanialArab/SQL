@@ -2683,14 +2683,17 @@ Local variables; they are defined inside the stored procedure or function. These
 <a name="81"></a>
 #### Functions
 
-+ Functions are pretty similar to the stored procedures BUT they can only return a single value. So functions unlike stored procedures cannot return results set with multiple rows and columns.
++ Let's see how to create our own functions 
++ Functions are pretty similar to the stored procedures BUT they can only return a **single value**. So functions unlike stored procedures cannot return results set with multiple rows and columns.
++ The syntax for creating a function is very similar to the syntax to create a stored procedure 
 + One of the main differences between functions and stored procedures is the RETURNS statement where we specify the type of value the functions returns which could be any data type in MySQL.
-+ Right after the RETURNS statement, we need to set the function's attributes, which could be one of the following (every MySQL function should have at least one attribute):
++ Right after the RETURNS statement, we need to set the **function's attributes**, which could be one of the following (every MySQL function should have at least one attribute):
 
-    + DETERMINISTIC meaning if we give the function the same set of values it returns the same results every time (in short it means the same output for the same input)
-    + READS SQL DATA
-    + MODIFIES SQL DATA
-we can have multiple attributes in a function.
+    + DETERMINISTIC meaning if we give the function the same set of values it always returns the same results every time (in short it means the same output for the same input)
+    + READS SQL DATA, meaning we are going to have a SELECT statement in our function to read some data 
+    + MODIFIES SQL DATA, meaning we are going to have an INSERT, UPDATE or DELETE statement in our function 
+
+We can have multiple attributes in a function for example if our function both reads and modifies the SQL data we may have both READS SQL DATA and MODIFIES SQL DATA as our function's attributes. 
 
             cursor = con.cursor()
             
@@ -2745,6 +2748,8 @@ We can use the DROP FUNCTION statement to drop a function:
         DROP FUNCTION IF EXISTS function_name
         
 <a name="82"></a>
-#### Other Conventions
+#### Conventions
+
+Try to stick with the conventions, like naming conventions or the default delimiter, that are already adopted in your organization, and don't try to reinvent the wheel! 
 
 
