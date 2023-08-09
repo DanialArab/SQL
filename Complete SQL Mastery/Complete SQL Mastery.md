@@ -2740,6 +2740,10 @@ We can use this function just like the built-in functions in the SELECT statemen
 
 Similar to views and stored procedures it is a good practice to save your functions in SQL files and put them under the source control.
 
+We can use the DROP FUNCTION statement to drop a function:
+
+        DROP FUNCTION IF EXISTS function_name
+        
 <a name="82"></a>
 #### Other Conventions
 
