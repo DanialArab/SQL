@@ -111,7 +111,7 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     6. [Enum and Set Types](#107)
     7. [Date and Time Types](#108)
     8. [Blob Types](#109)
-    9. [JSON Type](#110)(#110)
+    9. [JSON Type](#110)
 15. [Designing Databases](#111)
     1. [Introduction]
     2. 
