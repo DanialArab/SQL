@@ -83,7 +83,7 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     7. [Output Parameters](#79)
     8. [Variables](#80)
     9. [Functions](#81)
-    10. [Other Conventions](#82)
+    10. [Conventions](#82)
 10. [Triggers and Events](#83)
     1. [](#84) 
     
@@ -2752,4 +2752,6 @@ We can use the DROP FUNCTION statement to drop a function:
 
 Try to stick with the conventions, like naming conventions or the default delimiter, that are already adopted in your organization, and don't try to reinvent the wheel! 
 
+<a name="83"></a>
+### Triggers and Events
 
