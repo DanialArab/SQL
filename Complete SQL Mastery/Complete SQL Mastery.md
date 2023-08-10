@@ -2830,3 +2830,17 @@ Try to stick with the conventions, like naming conventions or the default delimi
 <a name="83"></a>
 ### Triggers and Events
 
+<a name="84"></a>
+#### Introduction
+
+A trigger is a block of SQL code that automatically gets executed before or after an INSERT, UPDATE, or DELETE statement. We use triggers to enforce **data consistency.**
+
+
+
+[Triggers and Events](#83)
+    1. [Introduction](#84)
+    2. [Viewing Triggers](#85)
+    3. [Dropping Triggers](#86)
+    4. [Using Triggers for Auditing](#87)
+    5. [ Events](#88)
+    6. [Viewing, Dropping and Altering Events](#89)
