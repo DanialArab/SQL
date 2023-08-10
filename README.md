@@ -194,6 +194,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |44|1440| Evaluate Boolean Expression|Medium|
 |45|1709| Biggest Window Between Visits|Medium|
 |46|1355| Activity Participants|Medium|
+|47|2020| Number of Accounts That Did Not Stream|Medium|
 
 
 
