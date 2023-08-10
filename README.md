@@ -198,6 +198,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |48|1867| Orders With Maximum Quantity Above Average|Medium|
 |49|2314| The First Day of the Maximum Recorded Degree in Each City|Medium|
 |50|1112| Highest Grade For Each Student|Medium|
+|51|2238| Number of Times a Driver Was a Passenger|Medium|
 
 
 
