@@ -195,6 +195,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |45|1709| Biggest Window Between Visits|Medium|
 |46|1355| Activity Participants|Medium|
 |47|2020| Number of Accounts That Did Not Stream|Medium|
+|48|1867| Orders With Maximum Quantity Above Average|Medium|
+
 
 
 
