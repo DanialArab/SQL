@@ -140,8 +140,28 @@ Here is the summary of my notes from the course <a href="https://codewithmosh.co
     25. [Altering Primary and Foreign Key Constraints](#136)
     26. [Character Sets and Collations](#137)
     27. [Storage Engines](#138)
-17. [Indexing for High Performance]
-18. [Securing Databases]
+17. [Indexing for High Performance](#139)
+    1. [Introduction](#140)
+    2. [Indexes](#141)
+    3. [Creating Indexes](#142)
+    4. [Viewing Indexes](#143)
+    5. [Prefix Indexes](#144)
+    6. [Full-text Indexes](#145)
+    7. [Composite Indexes](#146)
+    8. [Order of Columns in Composite Indexes](#147)
+    9. [When Indexes are Ignored](#148)
+    10. [Using Indexes for Sorting](#149)
+    11. [Covering Indexese](#150)
+    12. [Index Maintenance](#151)
+19. [Securing Databases](#152)
+    1. [Introduction](#153)
+    2. [Creating a User](#154)
+    3. [Viewing Users](#155)
+    4. [Dropping Users](#156)
+    5. [Changing Passwords](#157)
+    6. [Granting Privileges](#158)
+    7. [Viewing Privileges](#159)
+    8. [Revoking Privileges](#160)
 
    
 <a name="1"></a>
