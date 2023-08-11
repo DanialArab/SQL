@@ -201,6 +201,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |51|2238| Number of Times a Driver Was a Passenger|Medium|
 |52|1875| Group Employees of the Same Salary|Medium|
 |53|2051| The Category of Each Member in the Store|Medium|
+|54|1951| All the Pairs With the Maximum Number of Common Followers|Medium|
 
 
 
