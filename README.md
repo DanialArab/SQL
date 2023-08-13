@@ -204,6 +204,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |54|1951| All the Pairs With the Maximum Number of Common Followers|Medium|
 |55|2112| The Airport With the Most Traffic|Medium|
 |56|1532| The Most Recent Three Orders|Medium|
+|57|1988| Find Cutoff Score for Each School|Medium|
+
 
 
 
