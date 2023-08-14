@@ -206,6 +206,8 @@ The following tables detail the Leetcode database question I have solved so far:
 |56|1532| The Most Recent Three Orders|Medium|
 |57|1988| Find Cutoff Score for Each School|Medium|
 |58|1126| Active Businesses|Medium|
+|59|1747| Leetflex Banned Accounts|Medium|
+
 
 
 
