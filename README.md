@@ -209,6 +209,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |59|1747| Leetflex Banned Accounts|Medium|
 |60|1549| The Most Recent Orders for Each Product|Medium|
 |61|1264| Page Recommendations|Medium|
+|62|1811| Find Interview Candidates|Medium|
 
 
 
