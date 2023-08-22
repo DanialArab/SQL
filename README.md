@@ -215,10 +215,12 @@ The following tables detail the Leetcode database question I have solved so far:
 |65|1212| Team Scores in Football Tournament|Medium|
 |66|1949| Strong Friendship|Medium|
 |67|2175| The Change in Global Rankings|Medium|
+|68|1841| League Statistics|Medium|
 
 
 
  
+
 
 
 
