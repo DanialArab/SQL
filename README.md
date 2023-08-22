@@ -213,10 +213,11 @@ The following tables detail the Leetcode database question I have solved so far:
 |63|2159| Order Two Columns Independently|Medium|
 |64|580| Count Student Number in Departments|Medium|
 |65|1212| Team Scores in Football Tournament|Medium|
+|66|1949| Strong Friendship|Medium|
 
 
 
-
+ 
 
 
 
