@@ -216,6 +216,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |66|1949| Strong Friendship|Medium|
 |67|2175| The Change in Global Rankings|Medium|
 |68|1841| League Statistics|Medium|
+|69|2686| Immediate Food Delivery III|Medium|
 
 
 
