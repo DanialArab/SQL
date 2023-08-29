@@ -220,6 +220,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |69|2686| Immediate Food Delivery III|Medium|
 |70|1990| Count the Number of Experiments|Medium|
 |71|2346| Compute the Rank as a Percentage|Medium|
+|72|1132| Reported Posts II|Medium|
 
 
 
