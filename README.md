@@ -114,6 +114,7 @@ The following tables detail the Leetcode database question I have solved so far:
 |93 |597| Friend Requests I: Overall Acceptance Rate| Easy |
 |94 |1677| Product's Worth Over Invoices| Easy |
 |95 |2837| Total Traveled Distance| Easy |
+|96 |175| Combine Two Tables| Easy |
 
 
 
