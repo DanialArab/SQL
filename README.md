@@ -7,7 +7,7 @@ This repository documents my solutions to **Leetcode - Database questions using 
    2. [Medium Questions](#3)
    3. [Hard Questions](#4) 
 3. [Complete SQL Mastery](#5)
-
+ 
 
 <a name="1"></a>
 ## Leetcode Database Questions 
