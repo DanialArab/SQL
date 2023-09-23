@@ -1,7 +1,7 @@
 
 ## Workflow to generate the Leetcode databases in the MySQL server
 
-The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details can be found in the Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode%20Database%20Questions/Leetcode_Database_Questions_Pandas_API.ipynb">Leetcode_Database_Questions_Pandas_API</a>**.):
+The following steps detail the functions that need to be executed to generate the databases in the MySQL server using SQL Schema of the Leetcode questions (more details can be found in the Jupyter Notebook **<a href="https://github.com/DanialArab/SQL/blob/master/Leetcode%20Database%20Questions/Leetcode_Database_Questions_Pandas_API.ipynb">Leetcode_Database_Questions_Pandas_API</a>**):
 
 
 ### 1. Connecting to the MySQL server  
