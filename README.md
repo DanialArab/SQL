@@ -10,7 +10,7 @@ This repository documents my solutions to **Leetcode - Database questions using 
  
 
 <a name="1"></a>
-## Leetcode Database Questions 
+## Leetcode Database Questions
 
 The following tables detail the Leetcode database question I have solved so far:
 
